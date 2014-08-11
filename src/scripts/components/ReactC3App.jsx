@@ -7,6 +7,9 @@
 var React = require('react/addons');
 var Chart = require('../../scripts/components/Chart.jsx');
 var SelectBox = require('../../scripts/components/select.jsx');
+var MultiSelectBox = require('../../scripts/components/multi-select.jsx');
+
+
 
 var _ = require('lodash');
 // Export React so the devtools can find it
@@ -40,52 +43,44 @@ var ReactC3App = React.createClass({
     }
   },
   componentDidMount: function(){
-    var that = this;
-    setTimeout(function(){
-      that.setState({
-         data: {
-           columns:[
-             ['data1', -30, 2000, 2000, 400, -150, 250],
-             ['data2', 130, 100, -100, 2000, -150, 50],
-             ['data3', -230, 2000, 2000, -300, 250, 250]
-           ],
-           groups: ['data1', 'data2', 'data3'],
-           type: 'area'
-         }
-      });
-    },2000);
+
   },
   handleChange: function(type){
-    console.log(type);
+
     var newData = _.extend({},this.state.data);
     newData.type = type;
     this.setState({data:newData});
   },
-  renderSelect: function(id, label, values) {
-    var options = values.map(function(value) {
-      return <option value={value}>{value}</option>
-    })
-    return this.renderField(id, label,
-      <select className="form-control" id={id} ref={id} value={this.state.data.type} onChange={this.updateChartType}>
-        {options}
-      </select>
-    )
-  },
-   renderField: function(id, label, field) {
-    return <div className="form-group">
-      <label htmlFor={id} className="col-sm-4 control-label">{label}</label>
-      <div className="col-sm-6">
-        {field}
-      </div>
-    </div>
+  groupsSelectChange: function(groups){
+    // console.log('groups', groups);
+    var newData = _.extend({},this.state.data);
+    newData.groups = groups;
+    this.setState({data:newData});
   },
   render: function() {
     var chartTypes = [
       {value: 'bar', label: 'Bar'},
       {value: 'line', label: 'Line'},
       {value:'area', label:'Area'},
+      {value:'area-spline', label:'Area Spline'},
       {value:'pie', label:'Pie'},
-      {value:'donut', label:'Donut'}
+      {value:'donut', label:'Donut'},
+      {value:'gauge', label:'Gauge'}
+    ];
+
+    var groups = [
+      {
+        value: 'data1',
+        label: 'Data 1'
+      },
+      {
+        value: 'data2',
+        label: 'Data 2'
+      },
+      {
+        value: 'data3',
+        label: 'Data 3'
+      }
     ];
 
     return (
@@ -97,6 +92,16 @@ var ReactC3App = React.createClass({
             value={this.state.data.type}
             options={chartTypes}
           ></SelectBox>
+
+          <MultiSelectBox
+            label="Select groups"
+            onChange={this.groupsSelectChange}
+            value={this.state.data.groups}
+            options={groups}
+          ></MultiSelectBox>
+
+
+
         </div>
         <Chart chartId="mychart" columns={this.state.data.columns} type={this.state.data.type} groups={this.state.data.groups} />
       </div>

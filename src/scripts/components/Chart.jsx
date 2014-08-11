@@ -8,6 +8,7 @@ var React = require('react/addons');
 require('../../styles/Chart.css');
 require('../../styles/c3.css');
 
+var c3 = require('c3/c3.js');
 
 
 var Chart = React.createClass({
