@@ -80,7 +80,13 @@ var ReactC3App = React.createClass({
     </div>
   },
   render: function() {
-    var chartTypes = [{value: 'bar', label: 'Bar'}, {value: 'line', label: 'Line'}, {value:'area', label:'Area'}];
+    var chartTypes = [
+      {value: 'bar', label: 'Bar'},
+      {value: 'line', label: 'Line'},
+      {value:'area', label:'Area'},
+      {value:'pie', label:'Pie'},
+      {value:'donut', label:'Donut'}
+    ];
 
     return (
       <div className='main'>
