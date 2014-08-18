@@ -7,7 +7,7 @@
 var React = require('react/addons');
 require('../../styles/Chart.css');
 require('../../styles/c3.css');
-
+var _ = require('lodash');
 var c3 = require('c3/c3.js');
 
 
@@ -17,6 +17,25 @@ var Chart = React.createClass({
       chart: {}
     }
   },
+  prepareData: function(data){
+      var columns = [];
+      var keys = _.keys(data[0]);
+
+      _.map(keys,function(key){
+          var column = [];
+          column.push(key);
+          columns.push(column);
+      });
+
+      _.map(data, function(entry){
+            _.map(keys, function(key,val){
+              columns[val].push(entry[key]);
+            });
+      });
+
+      return columns;
+  },
+
   componentDidMount: function(){
     var chartInstance = c3.generate({
       bindto: '#' + this.props.chartId,

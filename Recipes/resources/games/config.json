@@ -1,0 +1,29 @@
+{
+	"type": "Collection",
+	"properties": {
+		"Name": {
+			"name": "Name",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "Name",
+			"order": 0
+		},
+		"Genere": {
+			"name": "Genere",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "Genere",
+			"order": 1
+		},
+		"ReviewScore": {
+			"name": "ReviewScore",
+			"type": "number",
+			"typeLabel": "number",
+			"required": false,
+			"id": "ReviewScore",
+			"order": 2
+		}
+	}
+}

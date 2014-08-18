@@ -1,0 +1,13 @@
+{
+	"type": "Collection",
+	"properties": {
+		"rule": {
+			"name": "rule",
+			"type": "object",
+			"typeLabel": "object",
+			"required": false,
+			"id": "rule",
+			"order": 0
+		}
+	}
+}

@@ -6,14 +6,19 @@ var mountFolder = function (connect, dir) {
 
 var webpackDistConfig = require('./webpack.dist.config.js'),
     webpackDevConfig = require('./webpack.config.js');
+var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest;
+
 
 module.exports = function (grunt) {
   // Let *load-grunt-tasks* require everything
   require('load-grunt-tasks')(grunt);
 
+  grunt.loadNpmTasks('grunt-connect-proxy');
+
+
   // Read configuration from package.json
   var pkgConfig = grunt.file.readJSON('package.json');
-  
+
   grunt.initConfig({
     pkg: pkgConfig,
 
@@ -32,7 +37,7 @@ module.exports = function (grunt) {
         publicPath: '/scripts/',
         contentBase: './<%= pkg.src %>/',
       },
-      
+
       start: {
         keepAlive: true,
       }
@@ -42,13 +47,22 @@ module.exports = function (grunt) {
       options: {
         port: 8000
       },
+      proxies: [
+          {
+              context: '/api',
+              host: 'localhost',
+              port: 2403,
+              changeOrigin: true
+          }
+      ],
 
       dist: {
         options: {
           keepalive: true,
           middleware: function (connect) {
             return [
-              mountFolder(connect, pkgConfig.dist)
+              mountFolder(connect, pkgConfig.dist),
+              proxySnippet
             ];
           }
         }
@@ -104,6 +118,7 @@ module.exports = function (grunt) {
         }]
       }
     }
+
   });
 
   grunt.registerTask('serve', function (target) {
@@ -112,6 +127,7 @@ module.exports = function (grunt) {
     }
 
     grunt.task.run([
+      'configureProxies',
       'open:dev',
       'webpack-dev-server'
     ]);

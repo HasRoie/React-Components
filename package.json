@@ -7,7 +7,8 @@
   "mainInput": "ReactC3App",
   "mainOutput": "main",
   "dependencies": {
-    "react": "~0.10.0"
+    "react": "~0.10.0",
+    "react-bootstrap": "~0.11.1"
   },
   "devDependencies": {
     "grunt": "~0.4.4",
@@ -31,6 +32,7 @@
     "grunt-open": "~0.2.3",
     "jshint-loader": "~0.6.0",
     "grunt-contrib-copy": "~0.5.0",
-    "grunt-contrib-clean": "~0.5.0"
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-deployd": "~0.1.2"
   }
 }
