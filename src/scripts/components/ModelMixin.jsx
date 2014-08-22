@@ -70,7 +70,6 @@ Model.prototype.getInstances = function(modelName, cb){
   }
   else{
     _dpd.list(modelName, function(instances){
-      console.log(modelName);
       _.each(instances, function(instance){
         _instances[name] = instances;
         cb(_instances[self.name]);

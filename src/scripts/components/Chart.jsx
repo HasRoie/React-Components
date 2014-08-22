@@ -9,16 +9,20 @@ require('../../styles/Chart.css');
 require('../../styles/c3.css');
 var _ = require('lodash');
 var c3 = require('c3/c3.js');
+var d3 = require('d3/d3.js');
+var EventEmitterMixin = require('../../scripts/components/EventEmitter.jsx');
 
 
 var Chart = React.createClass({
+  mixins: [EventEmitterMixin],
   getInitialState: function(){
     return {
-      chart: {}
+      chart: {},
+      isHovered: false,
+      highlightedData: this.props.highlightedData
     }
   },
   prepareData: function(data){
-      console.log(data);
       var columns = [];
       var keys = _.keys(data[0]);
 
@@ -33,8 +37,10 @@ var Chart = React.createClass({
               columns[val].push(entry[key]);
             });
       });
-      console.log(columns);
       return columns;
+  },
+  componentWillMount: function(){
+
   },
 
   componentDidMount: function(){
@@ -56,11 +62,25 @@ var Chart = React.createClass({
     this.state.chart.load({
       columns: this.prepareData(nextProps.data),
       type: nextProps.type
-    })
+    });
+
+    this.setState({
+      highlightedData: nextProps.highlightedData
+    });
   },
   render: function () {
+    var highlighted = this.state.highlightedData;
+    // console.log(highlighted.cell);
+    // if (!_.isUndefined(highlighted.cell)){
+    //   console.log(highlighted.cell.getDOMNode().innerHTML);
+    // }
     return (
-        <div id={this.props.chartId}></div>
+        <div>
+          <div>
+          {highlighted.key}
+          </div>
+          <div id={this.props.chartId}></div>
+        </div>
     );
   }
 });

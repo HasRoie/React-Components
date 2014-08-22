@@ -8,7 +8,12 @@ var React = require('react/addons');
 var Table = require('react-bootstrap/Table');
 require('../../styles/ModelTable.css');
 
+var EventEmitterMixin = require('../../scripts/components/EventEmitter.jsx');
+var UniqueIdMixin = require('../../scripts/components/UniqueIdMixin.jsx');
+
+
 var ModelTable = React.createClass({
+  mixins: [EventEmitterMixin, UniqueIdMixin],
   getInitialState: function(){
     return{
       model : this.props.model,
@@ -29,6 +34,10 @@ var ModelTable = React.createClass({
     model.instances = nextProps.model.instances;
     this.setState({model:model});
   },
+  doHover: function(e){
+    var ref = this.refs[e.target.id];
+    this.emit('clickstable', 'tableHover', ref.props);
+  },
   render: function () {
     var self = this;
     var headerRow = _.map(self.state.model.fields, function(field){
@@ -37,15 +46,26 @@ var ModelTable = React.createClass({
       )
     });
 
+    var rowIndex = 0;
     var entries = _.map(self.state.instances, function(instance){
+      var columnIndex = 0;
       var fields = _.map(self.state.model.fields, function(field){
           var value = instance[field];
+          var k = rowIndex + "_" + columnIndex;
+
+          columnIndex++;
+
           return (
-            <td>{value}</td>
+            <td id={k} key={k} ref={k} onMouseOver={self.doHover}>{value}</td>
           )
       });
+
+      var colId = self.makeId() + "_" + columnIndex;
+      rowIndex++;
+
+
       return (
-        <tr>
+        <tr key={colId}>
           {fields}
         </tr>
       );
