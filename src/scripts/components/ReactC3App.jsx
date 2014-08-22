@@ -11,13 +11,18 @@ var SelectBox = require('../../scripts/components/select.jsx');
 var MultiSelectBox = require('../../scripts/components/multi-select.jsx');
 var EditableSelect = require('../../scripts/components/EditableSelect.jsx');
 var RuleEditor = require('../../scripts/components/RuleEditor.jsx');
+var ClicksTable = require('../../scripts/components/ClicksTable.jsx');
+
+
 var BSGrid = require('react-bootstrap/Grid');
 var PageHeader = require('react-bootstrap/PageHeader');
+var DeploydMixin = require('../../scripts/components/DeploydMixin.jsx');
 
 var Grid = require('../../scripts/components/Grid.jsx');
 var Row = require('react-bootstrap/Row');
 var Col = require('react-bootstrap/Col');
 var Table = require('react-bootstrap/Table');
+var Panel = require('react-bootstrap/Panel');
 
 var _ = require('lodash');
 // Export React so the devtools can find it
@@ -29,9 +34,6 @@ require('../../styles/main.css');
 
 
 var imageURL = '../../images/yeoman.png';
-
-
-var DeploydMixin = require('../../scripts/components/DeploydMixin.jsx');
 
 var ReactC3App = React.createClass({
   mixins: [DeploydMixin],
@@ -69,7 +71,6 @@ var ReactC3App = React.createClass({
     this.setState({data:newData});
   },
   groupsSelectChange: function(groups){
-    // console.log('groups', groups);
     var newData = _.extend({},this.state.data);
     newData.groups = groups;
     this.setState({data:newData});
@@ -119,8 +120,6 @@ var ReactC3App = React.createClass({
       display: 'flex'
     };
 
-
-
     return (
 
       <BSGrid>
@@ -129,20 +128,10 @@ var ReactC3App = React.createClass({
         </PageHeader>
 
         <Grid layout={layoutOptions} direction="row">
-            <div className="ruleEditorWrapper" flex="8">
-               <RuleEditor />
-            </div>
-            <div className="chartWrapper" flex="4">
-              <Chart chartId="mychart" columns={this.state.data.columns} type={this.state.data.type} groups={this.state.data.groups} />
-            </div>
+            <ClicksTable />            
         </Grid>
 
-
-
-
       </BSGrid>
-
-
 
     );
   }

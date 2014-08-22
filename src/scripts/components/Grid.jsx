@@ -8,10 +8,11 @@ var React = require('react/addons');
 var _ =     require('lodash');
 var serializer = 0;
 
-var Grid = React.createClass({
-  componentWillRecieveProps: function(nextProps){
 
-  },
+var UniqueIdMixin = require('../../scripts/components/UniqueIdMixin.jsx');
+
+var Grid = React.createClass({
+  mixins: [UniqueIdMixin],
   render: function(){
     var children = this.props.children,
         direction = this.props.direction,
@@ -19,13 +20,13 @@ var Grid = React.createClass({
         layoutStyle = this.props.layout,
         children = this.props.children;
 
-
-
     layoutStyle.flexDirection = direction;
+
+    var layoutId = this.makeId() + "_layout"; 
 
     // Build the items
     var items = React.Children.map(children, function(item, i) {
-
+      var newId = this.makeId();
       var content = item.props.children;
       var childStyle = {};
 
@@ -37,14 +38,14 @@ var Grid = React.createClass({
       serializer++;
 
       return this.transferPropsTo(
-        <div id={i+serializer} className="child" style={childStyle}>
+        <div id={newId + "_" +serializer} className="child" style={childStyle}>
           {item}
         </div>
       );
     }.bind(this));
 
     return(
-      <div className="layout" style={layoutStyle}>
+      <div className="layout" style={layoutStyle} id={layoutId}>
         {items}
       </div>
     )

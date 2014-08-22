@@ -16,7 +16,7 @@ var EditableSelect = React.createClass({
   getInitialState: function(){
     return {
       editing: false,
-      value: 'bar',
+      value: this.props.value,
       set: false
     }
   },
@@ -38,7 +38,7 @@ var EditableSelect = React.createClass({
     var styles = {
       color: 'blue'
     };
-    
+
     var editable = (!this.state.editing) ? (
       <div style={styles} onClick={this.toggleEdit}>{this.state.value}</div>
     ) : (
@@ -46,7 +46,7 @@ var EditableSelect = React.createClass({
         <SelectBox
           label={this.props.label}
           onChange={this.handleChange}
-          value={this.state.value}
+          value={this.linkedState('value')}
           options={this.props.options}
         ></SelectBox>
 

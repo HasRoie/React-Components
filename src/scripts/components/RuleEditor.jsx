@@ -9,61 +9,59 @@ var Table = require('react-bootstrap/Table');
 var Grid = require('../../scripts/components/Grid.jsx');
 var Row = require('react-bootstrap/Row');
 var Col = require('react-bootstrap/Col');
+var Input = require('react-bootstrap/Input');
+var Button = require('react-bootstrap/Button');
+var NewEntry = require('../../scripts/components/NewEntry.jsx');
+var DeploydMixin = require('../../scripts/components/DeploydMixin.jsx');
+var ModelMixin = require('../../scripts/components/ModelMixin.jsx');
+var UniqueIdMixin = require('../../scripts/components/UniqueIdMixin.jsx');
+var RuleSchema = require('../../scripts/components/schemas/rule.schema.js');
+
+var ModelTable = require('../../scripts/components/ModelTable.jsx');
 
 require('../../styles/RuleEditor.css');
-var DeploydMixin = require('../../scripts/components/DeploydMixin.jsx');
 
 var RuleEditor = React.createClass({
-  mixins: [DeploydMixin],
+  mixins: [DeploydMixin,React.addons.LinkedStateMixin, ModelMixin, UniqueIdMixin],
+
   getInitialState: function(){
     return{
-      rules: []
+      rules: [],
+      model : this.newModel('rules', RuleSchema),
+      test: ''
     }
   },
   componentWillMount: function(){
     var that = this;
-    this.list('rules', function(data){
-        that.setState({
-            rules: data
-        })
+
+  },
+  saveEntry: function(){
+    var newInstance = arguments[0];
+
+
+    var that = this;
+
+    this.state.model.saveInstance(newInstance, function(updatedModel){
+      console.log('updated', updatedModel);
+      that.setState({
+        'model': updatedModel
+      });
+
     });
   },
   render: function () {
     var items;
-
-    if (this.state.rules.length == 0){
-      <div> No Rules </div>
-    }
-    else{
-      items = this.state.rules.map(function(entry){
-        var rule = entry.rule;
-        return(
-          <tr>
-            <td> {rule.from} </td>
-            <td> {rule.to} </td>
-            <td> {rule.when} </td>
-            <td> {rule.trend} </td>
-            <td> {rule.threshold} </td>
-            <td> {rule.resolution} </td>
-          </tr>
-        )
-      });
-    }
+    var that = this;
 
     return (
-      <Table striped bordered condensed hover>
-        <thead>
-          <th>From</th>
-          <th>To</th>
-          <th>When</th>
-          <th>Trend</th>
-          <th>Threshold</th>
-          <th>Resolution</th>
-        </thead>
-        <tbody>
-          {items}
-        </tbody>
-      </Table>
+      <div>
+
+        <ModelTable model={this.state.model}></ModelTable>
+
+        <NewEntry model={this.state.model} save={this.saveEntry}></NewEntry>
+
+
+      </div>
       );
   }
 });

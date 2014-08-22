@@ -1,0 +1,29 @@
+{
+	"type": "Collection",
+	"properties": {
+		"publisher": {
+			"name": "publisher",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "publisher",
+			"order": 0
+		},
+		"day": {
+			"name": "day",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "day",
+			"order": 1
+		},
+		"clicks": {
+			"name": "clicks",
+			"type": "number",
+			"typeLabel": "number",
+			"required": false,
+			"id": "clicks",
+			"order": 2
+		}
+	}
+}

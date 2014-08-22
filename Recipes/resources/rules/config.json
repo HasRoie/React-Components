@@ -1,13 +1,61 @@
 {
 	"type": "Collection",
 	"properties": {
-		"rule": {
-			"name": "rule",
-			"type": "object",
-			"typeLabel": "object",
+		"from": {
+			"name": "from",
+			"type": "string",
+			"typeLabel": "string",
 			"required": false,
-			"id": "rule",
+			"id": "from",
 			"order": 0
+		},
+		"to": {
+			"name": "to",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "to",
+			"order": 1
+		},
+		"where": {
+			"name": "where",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "where",
+			"order": 2
+		},
+		"trend": {
+			"name": "trend",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "trend",
+			"order": 3
+		},
+		"threshold": {
+			"name": "threshold",
+			"type": "number",
+			"typeLabel": "number",
+			"required": false,
+			"id": "threshold",
+			"order": 4
+		},
+		"resolution": {
+			"name": "resolution",
+			"type": "number",
+			"typeLabel": "number",
+			"required": false,
+			"id": "resolution",
+			"order": 5
+		},
+		"chang": {
+			"name": "chang",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "chang",
+			"order": 6
 		}
 	}
 }

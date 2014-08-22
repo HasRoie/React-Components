@@ -18,6 +18,7 @@ var Chart = React.createClass({
     }
   },
   prepareData: function(data){
+      console.log(data);
       var columns = [];
       var keys = _.keys(data[0]);
 
@@ -32,7 +33,7 @@ var Chart = React.createClass({
               columns[val].push(entry[key]);
             });
       });
-
+      console.log(columns);
       return columns;
   },
 
@@ -40,24 +41,22 @@ var Chart = React.createClass({
     var chartInstance = c3.generate({
       bindto: '#' + this.props.chartId,
       data: {
-        columns: this.props.columns,
+        columns: this.prepareData(this.props.data),
         type: this.props.type,
         x: this.props.x
       },
-      groups: this.props.groups,
       grid: this.props.grid,
     });
     this.setState({
       chart: chartInstance,
     })
   },
+
   componentWillReceiveProps: function(nextProps){
     this.state.chart.load({
-      columns: nextProps.columns,
+      columns: this.prepareData(nextProps.data),
       type: nextProps.type
     })
-
-    this.state.chart.groups([nextProps.groups]);
   },
   render: function () {
     return (
