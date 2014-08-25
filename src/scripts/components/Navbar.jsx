@@ -5,7 +5,7 @@
 'use strict';
 
 var React = require('react/addons');
-require('../../styles/Navbar.css');
+require('styles/Navbar.css');
 
 var Navbar = React.createClass({
   render: function () {

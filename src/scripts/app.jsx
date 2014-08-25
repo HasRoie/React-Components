@@ -5,13 +5,13 @@
 'use strict';
 
 var React = require('react/addons');
-var Chart = require('components/Chart.jsx');
+var Chart = require('components/Chart');
 
-var SelectBox = require('components/select.jsx');
+var SelectBox = require('components/select');
 var MultiSelectBox = require('components/multi-select');
 var EditableSelect = require('components/EditableSelect');
-var RuleEditor = require('components/RuleEditor');
-var ClicksTable = require('components/ClicksTable');
+var RuleEditor = require('composits/RuleEditor');
+var ClicksTable = require('composits/ClicksTable');
 
 
 var BSGrid = require('react-bootstrap/Grid');

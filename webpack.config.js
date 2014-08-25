@@ -51,13 +51,13 @@ module.exports = {
     extensions: ['', '.js', '.jsx'],
 
     alias : {
-      app : __dirname + '/script/app.js',
-      pages: __dirname + '/scripts/pages',
-      mixins: __dirname + '/scripts/mixins',
-      schemas: __dirname + '/scripts/schemas',
-      components : __dirname + '/script/components',
-      composits: __dirname + '/scripts/composits',
-      styles: __dirname + '/styles'
+      app : __dirname + '/src/script/app.js',
+      pages: __dirname + '/src/scripts/pages',
+      mixins: __dirname + '/src/scripts/mixins',
+      schemas: __dirname + '/src/scripts/schemas',
+      components : __dirname + '/src/scripts/components',
+      composits: __dirname + '/src/scripts/composits',
+      styles: __dirname + '/src/styles'
     }
   }
 };

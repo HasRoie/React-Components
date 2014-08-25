@@ -7,8 +7,8 @@ var i = 0;
 
 
 var React = require('react/addons');
-require('../../styles/NewEntry.css');
-var Grid = require('../../scripts/components/Grid.jsx');
+require('styles/NewEntry.css');
+var Grid = require('components/Grid');
 var Input = require('react-bootstrap/Input');
 var Button = require('react-bootstrap/Button');
 

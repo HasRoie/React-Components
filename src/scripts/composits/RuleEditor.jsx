@@ -6,20 +6,20 @@
 
 var React = require('react/addons');
 var Table = require('react-bootstrap/Table');
-var Grid = require('../../scripts/components/Grid.jsx');
+var Grid = require('components/Grid.jsx');
 var Row = require('react-bootstrap/Row');
 var Col = require('react-bootstrap/Col');
 var Input = require('react-bootstrap/Input');
 var Button = require('react-bootstrap/Button');
-var NewEntry = require('../../scripts/components/NewEntry.jsx');
-var DeploydMixin = require('../../scripts/components/DeploydMixin.jsx');
-var ModelMixin = require('../../scripts/components/ModelMixin.jsx');
-var UniqueIdMixin = require('../../scripts/components/UniqueIdMixin.jsx');
-var RuleSchema = require('../../scripts/components/schemas/rule.schema.js');
+var NewEntry = require('components/NewEntry');
+var DeploydMixin = require('mixins/DeploydMixin');
+var ModelMixin = require('mixins/ModelMixin');
+var UniqueIdMixin = require('mixins/UniqueIdMixin');
+var RuleSchema = require('schemas/rule.schema.js');
 
-var ModelTable = require('../../scripts/components/ModelTable.jsx');
+var ModelTable = require('components/ModelTable');
 
-require('../../styles/RuleEditor.css');
+require('styles/RuleEditor.css');
 
 var RuleEditor = React.createClass({
   mixins: [DeploydMixin,React.addons.LinkedStateMixin, ModelMixin, UniqueIdMixin],

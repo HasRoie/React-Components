@@ -5,9 +5,9 @@
 'use strict';
 
 var React = require('react/addons');
-require('../../styles/EditableSelect.css');
-var SelectBox = require('../../scripts/components/select.jsx');
-var MultiSelectBox = require('../../scripts/components/multi-select.jsx');
+require('styles/EditableSelect.css');
+var SelectBox = require('components/select');
+var MultiSelectBox = require('components/multi-select');
 
 
 

@@ -6,8 +6,8 @@
 
 var React = require('react/addons');
 
-var UniqueIdMixin = require('../../scripts/components/UniqueIdMixin.jsx');
-var _dpd = require('../../scripts/components/DeploydMixin.jsx');
+var UniqueIdMixin = require('mixins/UniqueIdMixin');
+var _dpd = require('mixins/DeploydMixin');
 
 var _ = require('lodash');
 

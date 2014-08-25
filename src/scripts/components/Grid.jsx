@@ -9,7 +9,7 @@ var _ =     require('lodash');
 var serializer = 0;
 
 
-var UniqueIdMixin = require('../../scripts/components/UniqueIdMixin.jsx');
+var UniqueIdMixin = require('mixins/UniqueIdMixin');
 
 var Grid = React.createClass({
   mixins: [UniqueIdMixin],
@@ -22,7 +22,7 @@ var Grid = React.createClass({
 
     layoutStyle.flexDirection = direction;
 
-    var layoutId = this.makeId() + "_layout"; 
+    var layoutId = this.makeId() + "_layout";
 
     // Build the items
     var items = React.Children.map(children, function(item, i) {

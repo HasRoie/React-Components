@@ -6,26 +6,26 @@
 
 var React = require('react/addons');
 var Table = require('react-bootstrap/Table');
-var Grid = require('../../scripts/components/Grid.jsx');
+var Grid = require('components/Grid');
 var Row = require('react-bootstrap/Row');
 var Col = require('react-bootstrap/Col');
 var Input = require('react-bootstrap/Input');
 var Button = require('react-bootstrap/Button');
-var NewEntry = require('../../scripts/components/NewEntry.jsx');
-var DeploydMixin = require('../../scripts/components/DeploydMixin.jsx');
-var ModelMixin = require('../../scripts/components/ModelMixin.jsx');
-var UniqueIdMixin = require('../../scripts/components/UniqueIdMixin.jsx');
-var EventEmitterMixin = require('../../scripts/components/EventEmitter.jsx');
+var NewEntry = require('components/NewEntry');
+var DeploydMixin = require('mixins/DeploydMixin');
+var ModelMixin = require('mixins/ModelMixin');
+var UniqueIdMixin = require('mixins/UniqueIdMixin');
+var EventEmitterMixin = require('mixins/EventEmitter');
 
-var ClicksSchema = require('../../scripts/components/schemas/clicks.schema.js');
-var Chart = require('../../scripts/components/Chart.jsx');
+var ClicksSchema = require('schemas/clicks.schema.js');
+var Chart = require('components/Chart.jsx');
 var Table = require('react-bootstrap/Table');
 var Panel = require('react-bootstrap/Panel');
 
-var ModelTable = require('../../scripts/components/ModelTable.jsx');
+var ModelTable = require('components/ModelTable.jsx');
 
 
-require('../../styles/ClicksTable.css');
+require('styles/ClicksTable.css');
 
 var ClicksTable = React.createClass({
   mixins: [DeploydMixin,React.addons.LinkedStateMixin, ModelMixin, UniqueIdMixin, EventEmitterMixin],

@@ -5,20 +5,20 @@
 'use strict';
 
 var React = require('react/addons');
-var Chart = require('../../scripts/components/Chart.jsx');
+var Chart = require('components/Chart');
 
-var SelectBox = require('../../scripts/components/select.jsx');
-var MultiSelectBox = require('../../scripts/components/multi-select.jsx');
-var EditableSelect = require('../../scripts/components/EditableSelect.jsx');
-var RuleEditor = require('../../scripts/components/RuleEditor.jsx');
-var ClicksTable = require('../../scripts/components/ClicksTable.jsx');
+var SelectBox = require('components/select');
+var MultiSelectBox = require('components/multi-select');
+var EditableSelect = require('components/EditableSelect');
+var RuleEditor = require('components/RuleEditor');
+var ClicksTable = require('composits/ClicksTable');
 
 
 var BSGrid = require('react-bootstrap/Grid');
 var PageHeader = require('react-bootstrap/PageHeader');
-var DeploydMixin = require('../../scripts/components/DeploydMixin.jsx');
+var DeploydMixin = require('mixins/DeploydMixin');
 
-var Grid = require('../../scripts/components/Grid.jsx');
+var Grid = require('components/Grid');
 var Row = require('react-bootstrap/Row');
 var Col = require('react-bootstrap/Col');
 var Table = require('react-bootstrap/Table');
@@ -128,7 +128,7 @@ var ReactC3App = React.createClass({
         </PageHeader>
 
         <Grid layout={layoutOptions} direction="row">
-            <ClicksTable />            
+            <ClicksTable />
         </Grid>
 
       </BSGrid>
