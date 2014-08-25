@@ -15,7 +15,7 @@ module.exports = {
   cache: true,
   debug: true,
   devtool: false,
-  entry: './src/scripts/components/<%= pkg.mainInput %>.jsx',
+  entry: './src/scripts/<%= pkg.mainInput %>.jsx',
 
   stats: {
     colors: true,
@@ -45,5 +45,19 @@ module.exports = {
       test: /\.jsx$/,
       loader: 'jsx-loader'
     }]
+  },
+
+  resolve: {
+    extensions: ['', '.js', '.jsx'],
+
+    alias : {
+      app : __dirname + '/script/app.js',
+      pages: __dirname + '/scripts/pages',
+      mixins: __dirname + '/scripts/mixins',
+      schemas: __dirname + '/scripts/schemas',
+      components : __dirname + '/script/components',
+      composits: __dirname + '/scripts/composits',
+      styles: __dirname + '/styles'
+    }
   }
 };

@@ -4,7 +4,7 @@
   "src": "src",
   "test": "test",
   "dist": "dist",
-  "mainInput": "ReactC3App",
+  "mainInput": "app",
   "mainOutput": "main",
   "dependencies": {
     "react": "~0.10.0",
