@@ -8,7 +8,7 @@ var React = require('react/addons');
 var Chart = require('components/Chart');
 
 var SelectBox = require('components/select');
-var MultiSelectBox = require('components/multi-select');
+var MultiSelectBox = require('components/MultiSelect');
 var EditableSelect = require('components/EditableSelect');
 var RuleEditor = require('composits/RuleEditor');
 var ClicksTable = require('composits/ClicksTable');
@@ -129,7 +129,7 @@ var App = React.createClass({
         </PageHeader>
 
         <Grid layout={layoutOptions} direction="row">
-            <ClicksTable />
+            <RuleEditor />
         </Grid>
 
       </BSGrid>

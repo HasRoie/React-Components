@@ -4,13 +4,22 @@
 
 'use strict';
 
+
 var React = require('react/addons');
-require('styles//Chart.css');
-require('styles//c3.css');
 var _ = require('lodash');
-var c3 = require('c3');
+
+/**
+* Mixins
+*/
+var c3 = require('mixins/c3');
 var d3 = require('d3');
 var EventEmitterMixin = require('mixins/EventEmitter');
+
+/**
+* Styles
+*/
+require('styles/Chart.css');
+require('styles/c3.css');
 
 
 var Chart = React.createClass({
@@ -53,6 +62,8 @@ var Chart = React.createClass({
       },
       grid: this.props.grid,
     });
+
+
     this.setState({
       chart: chartInstance,
     })

@@ -27,6 +27,7 @@ var Model = function(name,schema){
   this.name = name;
   this.singleName = name.substring(0, name.length - 1);
   this.fields = _.keys(schema);
+  this.schema = schema;
 
 
   if (_.isUndefined(_schemas[name])){
@@ -51,13 +52,8 @@ Model.prototype.saveInstance = function(newInstance, cb){
   var singleName = newInstance.singleName;
 
   var entry = newInstance;
-  _dpd.create(modelName,newInstance,function(id){
-
-      entry[id] = id;
-
-
-      _instances[modelName].push(entry);
-
+  _dpd.create(modelName,newInstance,function(res){
+      _instances[modelName].push(res);
       cb(_instances[modelName]);
   });
 }

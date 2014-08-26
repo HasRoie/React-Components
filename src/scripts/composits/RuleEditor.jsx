@@ -59,7 +59,7 @@ var RuleEditor = React.createClass({
         <ModelTable model={this.state.model}></ModelTable>
 
         <NewEntry model={this.state.model} save={this.saveEntry}></NewEntry>
-
+        
 
       </div>
       );

@@ -8,7 +8,9 @@ var React = require('react/addons');
 var _ =     require('lodash');
 var serializer = 0;
 
-
+/**
+* Mixins
+*/
 var UniqueIdMixin = require('mixins/UniqueIdMixin');
 
 var Grid = React.createClass({

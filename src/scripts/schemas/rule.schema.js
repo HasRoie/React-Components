@@ -1,22 +1,22 @@
 var RuleSchema = {
   from: {
     type: 'string',
-    component: 'Select',
+    component: 'Input',
     data: ['option1', 'option2', 'option3']
   },
   to: {
     type: 'string',
-    component: 'Select',
+    component: 'Input',
     data: ['option1', 'option2', 'option3']
   },
   where: {
     type: 'string',
-    component: 'Select',
+    component: 'Input',
     data: ['option1', 'option2', 'option3']
   },
   trend: {
     type: 'string',
-    component: 'Select',
+    component: 'Input',
     data: ['increase', 'decrease']
   },
   threshold: {
@@ -25,12 +25,7 @@ var RuleSchema = {
   },
   resolution: {
     type: 'string',
-    component: 'Select',
-    data: ['day', 'week', 'month']
-  },
-  chang: {
-    type: 'string',
-    component: 'Select',
+    component: 'Input',
     data: ['day', 'week', 'month']
   }
 };

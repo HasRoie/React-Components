@@ -6,10 +6,17 @@
 
 var React = require('react/addons');
 var Table = require('react-bootstrap/Table');
-require('styles/ModelTable.css');
 
+/**
+* Mixins
+*/
 var EventEmitterMixin = require('mixins/EventEmitter');
 var UniqueIdMixin = require('mixins/UniqueIdMixin');
+
+/**
+* Styles
+*/
+require('styles/ModelTable.css');
 
 
 var ModelTable = React.createClass({

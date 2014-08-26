@@ -4,33 +4,33 @@
 
 'use strict';
 
-var React = require('react/addons');
-var Chart = require('components/Chart');
+// Export React so the devtools can find it
+(window !== window.top ? window.top : window).React = React;
 
+var React = require('react/addons');
+
+var Chart = require('components/Chart');
 var SelectBox = require('components/select');
-var MultiSelectBox = require('components/multi-select');
+var MultiSelectBox = require('components/MultiSelect');
 var EditableSelect = require('components/EditableSelect');
 var RuleEditor = require('components/RuleEditor');
 var ClicksTable = require('composits/ClicksTable');
-
+var Grid = require('components/Grid');
 
 var BSGrid = require('react-bootstrap/Grid');
 var PageHeader = require('react-bootstrap/PageHeader');
-var DeploydMixin = require('mixins/DeploydMixin');
-
-var Grid = require('components/Grid');
 var Row = require('react-bootstrap/Row');
 var Col = require('react-bootstrap/Col');
 var Table = require('react-bootstrap/Table');
 var Panel = require('react-bootstrap/Panel');
 
+var DeploydMixin = require('mixins/DeploydMixin');
+
 var _ = require('lodash');
-// Export React so the devtools can find it
-(window !== window.top ? window.top : window).React = React;
 
 // CSS
-require('../../styles/reset.css');
-require('../../styles/main.css');
+require('styles/reset.css');
+require('styles/main.css');
 
 
 var imageURL = '../../images/yeoman.png';
@@ -128,8 +128,11 @@ var ReactC3App = React.createClass({
         </PageHeader>
 
         <Grid layout={layoutOptions} direction="row">
-            <ClicksTable />
+            <RulesEditor />
         </Grid>
+
+        <Chart chartId="mychart" columns={this.state.data.columns} type={this.state.data.type} groups={this.state.data.groups} />
+
 
       </BSGrid>
 

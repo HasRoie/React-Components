@@ -58,10 +58,12 @@ var ClicksTable = React.createClass({
   saveEntry: function(){
     var newInstance = arguments[0];
     var that = this;
+    var model = this.state.model;
 
     this.state.model.saveInstance(newInstance, function(updatedModel){
+      model.instances = updatedModel;
       that.setState({
-        'model': updatedModel
+        'model': model
       });
 
     });
@@ -84,9 +86,7 @@ var ClicksTable = React.createClass({
           <Chart chartId="mychart" data={this.state.instances} type="bar" highlightedData={this.state.highlightedData} />
         </div>
       </div>
-
-
-      );
+    );
   }
 });
 

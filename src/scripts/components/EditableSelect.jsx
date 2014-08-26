@@ -5,11 +5,17 @@
 'use strict';
 
 var React = require('react/addons');
+
+/**
+* Components
+*/
+var SelectBox = require('components/Select');
+var MultiSelectBox = require('components/MultiSelect');
+
+/**
+* Styles
+*/
 require('styles/EditableSelect.css');
-var SelectBox = require('components/select');
-var MultiSelectBox = require('components/multi-select');
-
-
 
 var EditableSelect = React.createClass({
   mixins: [React.addons.LinkedStateMixin],
