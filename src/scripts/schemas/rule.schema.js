@@ -1,21 +1,21 @@
 var RuleSchema = {
   from: {
-    type: 'string',
+    type: 'text',
     component: 'Input',
     data: ['option1', 'option2', 'option3']
   },
   to: {
-    type: 'string',
+    type: 'text',
     component: 'Input',
     data: ['option1', 'option2', 'option3']
   },
   where: {
-    type: 'string',
+    type: 'text',
     component: 'Input',
     data: ['option1', 'option2', 'option3']
   },
   trend: {
-    type: 'string',
+    type: 'text',
     component: 'Input',
     data: ['increase', 'decrease']
   },
@@ -24,7 +24,7 @@ var RuleSchema = {
     component: 'Input'
   },
   resolution: {
-    type: 'string',
+    type: 'text',
     component: 'Input',
     data: ['day', 'week', 'month']
   }

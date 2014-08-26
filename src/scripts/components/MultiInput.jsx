@@ -7,13 +7,9 @@
 var React = require('react/addons');
 require('../../styles/MultiInput.css');
 
-// var components = {
-//   'Input': require('react-bootstrap/Input')
-// }
-
-var Input = require('react-bootstrap/Input');
-
-
+var components = {
+  'Input': require('react-bootstrap/Input')
+};
 
 var MultiInput = React.createClass({
   getDefaultProps: function(){
@@ -23,15 +19,34 @@ var MultiInput = React.createClass({
   },
   componentWillMount: function(){},
   componentDidMount: function(){
-    var node = this.getDOMNode();
-    React.renderComponent(Input({}), node)
+    // var node = this.getDOMNode();
+    // React.renderComponent(Input({}), node)
   },
   render: function () {
-    // var component = this.props.component;
+    var root = this.props.component;
+    var schema = this.props.data;
+    var component = components[schema.component];
     return this.transferPropsTo(
-      <Input type="text"/>
+        <component type={schema.type} />      
     )
   }
 });
 
 module.exports = MultiInput;
+
+//
+// var topComponent = React.createClass({
+//   render: function () {
+//     var components = this.props.schema.map(function (componentName) {
+//       return require(componentName);
+//     });
+//
+//     return <div>
+//       {components.map(function (comp) {
+//         return <comp />
+//       })}
+//     </div>
+//   }
+// })
+//
+// React.renderComponent(<topComponent/>, document.body)
