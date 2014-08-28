@@ -44,6 +44,7 @@ var NewEntry = React.createClass({
   },
 
   updateChange: function(e){
+
     var model = this.state._model;
     var fieldList = this.state._fields;
     var schema = this.state._schema;
@@ -90,13 +91,14 @@ var NewEntry = React.createClass({
     };
 
 
-    var fields = _.map(schema,function(field){
+    var fields = _.map(schema,function(field,key){
       var component = componentTypes[field.component];
 
       i++;
       return (
         <div className="inputWrapper">
-          <MultiInput data={field} />
+            <Input id={i} label={key} ref={key} type="text" defaultValue={that.state[field]}  onChange={that.updateChange} />
+            
         </div>
       )
     });

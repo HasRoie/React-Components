@@ -128,7 +128,7 @@ var ReactC3App = React.createClass({
         </PageHeader>
 
         <Grid layout={layoutOptions} direction="row">
-            <RulesEditor />
+            <ClicksTabel />
         </Grid>
 
         <Chart chartId="mychart" columns={this.state.data.columns} type={this.state.data.type} groups={this.state.data.groups} />

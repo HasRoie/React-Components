@@ -11,15 +11,14 @@ var _dpd = require('mixins/DeploydMixin');
 
 var _ = require('lodash');
 
-var _schemas = {};
-var _instances = {};
-
 var ModelMixin = {
     newModel: function(name,schema){
       return new Model(name,schema);
     }
 };
 
+var _schemas = {};
+var _instances = {};
 
 var Model = function(name,schema){
   var id = UniqueIdMixin.makeId();
@@ -28,7 +27,6 @@ var Model = function(name,schema){
   this.singleName = name.substring(0, name.length - 1);
   this.fields = _.keys(schema);
   this.schema = schema;
-
 
   if (_.isUndefined(_schemas[name])){
       _schemas[name] = schema;
@@ -39,6 +37,7 @@ var Model = function(name,schema){
       _instances[name] = data
     });
   }
+
   else{
     if (_.isUndefined(_instances[name][id])){
       _instances[name][id] = schema;
@@ -47,7 +46,6 @@ var Model = function(name,schema){
 };
 
 Model.prototype.saveInstance = function(newInstance, cb){
-  // console.log(newInstance);
   var modelName = newInstance.name;
   var singleName = newInstance.singleName;
 
@@ -57,6 +55,18 @@ Model.prototype.saveInstance = function(newInstance, cb){
       cb(_instances[modelName]);
   });
 }
+
+Model.prototype.removeInstance = function(modelName, instanceId, cb){
+  var modelName = newInstance.name;
+  var singleName = newInstance.singleName;
+
+  var entry = newInstance;
+  _dpd.remove(modelName,instanceId,function(res){
+      //TODO: Remove from _instances
+      cb(_instances[modelName]);
+  });
+}
+
 
 Model.prototype.getInstances = function(modelName, cb){
   var self = this;

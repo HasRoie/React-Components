@@ -53,6 +53,7 @@ var Chart = React.createClass({
   },
 
   componentDidMount: function(){
+
     var chartInstance = c3.generate({
       bindto: '#' + this.props.chartId,
       data: {
@@ -78,6 +79,16 @@ var Chart = React.createClass({
     this.setState({
       highlightedData: nextProps.highlightedData
     });
+
+    if (!_.isUndefined(nextProps.highlightedData)){
+      var coordsArr = nextProps.highlightedData.id.split("_");
+      var locationX = parseInt(coordsArr[0]);
+      var locationY = parseInt(coordsArr[1]);
+
+      var d = {x: locationX, y: locationY, value: 200, id: "clicks", index: locationX, name: "clicks"} ;
+      this.state.chart.externalSelect(d)
+    }
+
   },
   render: function () {
     var highlighted = this.state.highlightedData;
@@ -87,9 +98,6 @@ var Chart = React.createClass({
     // }
     return (
         <div>
-          <div>
-          {highlighted.key}
-          </div>
           <div id={this.props.chartId}></div>
         </div>
     );

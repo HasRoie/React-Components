@@ -1,4 +1,5 @@
 var React = require('react/addons')
+
 var label = React.DOM.label
 var div = React.DOM.div
 var button = React.DOM.button
