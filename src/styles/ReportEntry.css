@@ -1,0 +1,45 @@
+.reportEntry{
+  font-size: 20px;
+  margin: 20px;
+  padding: 10px;
+  font-weight: 300;
+
+}
+
+
+.reportEntry.positive{
+  background: rgba(42, 168, 42, 0.17)
+}
+
+.reportEntry.negative{
+  background: rgba(245, 211, 211, 0.60);
+}
+
+.reportEntry > .part {
+  display: inline;
+  margin-right: 5px;
+}
+
+.part.ratio{
+  font-weight: 700;
+}
+
+.part.app,.part.contextTarget{
+  font-weight: 400;
+}
+
+.part.fact{
+  text-decoration: underline;
+}
+
+.part.positive{
+  color: rgb(0, 109, 0);
+}
+
+.part.negative{
+  color: rgb(194, 10, 10);
+}
+
+.part.timeframe{
+  font-weight: 400;
+}

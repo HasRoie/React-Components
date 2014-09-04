@@ -12,6 +12,7 @@ var MultiSelectBox = require('components/MultiSelect');
 var EditableSelect = require('components/EditableSelect');
 var RuleEditor = require('composits/RuleEditor');
 var ClicksTable = require('composits/ClicksTable');
+var Dashboard = require('composits/Dashboard');
 
 
 var BSGrid = require('react-bootstrap/Grid');
@@ -70,7 +71,7 @@ var App = React.createClass({
         </PageHeader>
 
         <Grid layout={layoutOptions} direction="row">
-            <ClicksTable />
+            <Dashboard />
         </Grid>
 
       </BSGrid>

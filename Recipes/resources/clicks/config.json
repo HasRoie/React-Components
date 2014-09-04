@@ -1,29 +1,45 @@
 {
 	"type": "Collection",
 	"properties": {
-		"publisher": {
-			"name": "publisher",
+		"timestamp": {
+			"name": "timestamp",
 			"type": "string",
 			"typeLabel": "string",
 			"required": false,
-			"id": "publisher",
+			"id": "timestamp",
 			"order": 0
 		},
-		"day": {
-			"name": "day",
+		"adclicksunique": {
+			"name": "adclicksunique",
 			"type": "string",
 			"typeLabel": "string",
 			"required": false,
-			"id": "day",
+			"id": "adclicksunique",
 			"order": 1
 		},
-		"clicks": {
-			"name": "clicks",
-			"type": "number",
-			"typeLabel": "number",
+		"installs": {
+			"name": "installs",
+			"type": "string",
+			"typeLabel": "string",
 			"required": false,
-			"id": "clicks",
+			"id": "installs",
 			"order": 2
+		},
+		"conversation": {
+			"name": "conversation",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "conversation",
+			"order": 3
+		},
+		"doddelta": {
+			"name": "doddelta",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "doddelta",
+			"order": 4
 		}
 	}
 }

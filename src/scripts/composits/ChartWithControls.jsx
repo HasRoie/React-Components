@@ -18,7 +18,8 @@ var ChartWithControls = React.createClass({
       {value: 'line', label: 'Line'},
       {value:'area', label:'Area'},
       {value:'pie', label:'Pie'},
-      {value:'donut', label:'Donut'}
+      {value:'donut', label:'Donut'},
+      {value:'scatter', label:'Scatter'}
     ];
 
     return {
@@ -32,7 +33,7 @@ var ChartWithControls = React.createClass({
   render: function () {
 
     return this.transferPropsTo(
-        <div>            
+        <div>
           <Select
             label="Select Chart"
             onChange={this.handleChartTypeChange}
