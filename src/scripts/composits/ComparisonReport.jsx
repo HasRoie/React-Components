@@ -8,13 +8,16 @@ var React = require('react/addons');
 require('../../styles/ComparisonReport.css');
 
 var Grid = require('components/Grid');
+var Chart = require('components/Chart');
+var UniqueIdMixin = require('mixins/UniqueIdMixin');
+
 var ReportEntry = require('components/ReportEntry');
 
 
 var ComparisonReport = React.createClass({
-
+  mixins: [UniqueIdMixin],
   render: function () {
-
+    var self = this;
 
     var layoutOptions = {
       flexWrap: 'wrap',
@@ -24,16 +27,13 @@ var ComparisonReport = React.createClass({
       display: 'flex'
     };
 
-    var reports = this.props.entry.timeseries.map(function(report){
-      var entries = report.entries.map(function(entry){
-        return (
-          <ReportEntry entry={entry}/>
-        )
-      });
 
+
+    var reports = this.props.entry.timeseries.map(function(report){
+      var chartId = self.makeId();
       return (
         <div>
-          {entries}
+          <Chart chartId={chartId} data={report.entries} axis={report.resolution} type='line' />
         </div>
       )
     });

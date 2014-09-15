@@ -28,12 +28,16 @@ var Chart = React.createClass({
     return {
       chart: {},
       isHovered: false,
-      highlightedData: this.props.highlightedData
+      highlightedData: this.props.highlightedData,
+      axis: this.props.axis
     }
   },
   prepareData: function(data){
+      var self = this;
       var columns = [];
       var keys = _.keys(data[0]);
+
+
 
       _.map(keys,function(key){
           var column = [];
@@ -46,6 +50,8 @@ var Chart = React.createClass({
               columns[val].push(entry[key]);
             });
       });
+
+
       return columns;
   },
   componentWillMount: function(){
@@ -59,7 +65,7 @@ var Chart = React.createClass({
       data: {
         columns: this.prepareData(this.props.data),
         type: this.props.type,
-        x: this.props.x
+        x: this.props.axis
       },
       grid: this.props.grid,
     });

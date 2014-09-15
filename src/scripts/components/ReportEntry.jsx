@@ -41,6 +41,7 @@ var ReportEntry = React.createClass({
     entry.finalValue = this.getFinalValue(entry.ratio, entry.unitType);
     // entry.timeframe = entry.timeseries[0].resolution;
     // entry.timeseries[0].entries.length
+    console.log(entry);
 
 
     return (
@@ -53,7 +54,7 @@ var ReportEntry = React.createClass({
           <span className={entry.sentiment + " part fact"}>{entry.fact}</span>
           <span className="part operator">{entry.operator}</span>
           <span className={entry.sentiment + " part ratio"}>{entry.finalValue}</span>
-          <span className="part timeframe">in the last  {entry.timeframe}. </span>
+          <span className="part timeframe">in the last  {entry.resolution}. </span>
         </div>
       );
   }

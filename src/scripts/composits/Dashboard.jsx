@@ -5,11 +5,13 @@
 var React = require('React');
 var ReportEntry = require('components/ReportEntry');
 var ComparisonReport = require('composits/ComparisonReport');
+var Chart = require('components/Chart');
+var UniqueIdMixin = require('mixins/UniqueIdMixin');
 
 var _ = require('lodash');
 
 var Dashboard = React.createClass({
-
+  mixins: [UniqueIdMixin],
   getInitialState: function() {
     return {
         entries: [
@@ -22,12 +24,13 @@ var Dashboard = React.createClass({
             sentiment: 'positive',
             unitType: 'percentage',
             ratio: 0.14,
+            resolution: 'week',
             timeseries:[ {
-              resolution: 'weeks',
+              resolution: 'week',
               entries: [
                 {
                   week: 1,
-                  value: 0.10
+                  value: 0.130
                 },
                 {
                   week: 2,
@@ -40,6 +43,70 @@ var Dashboard = React.createClass({
                 {
                   week: 4,
                   value: 0.20
+                },
+                {
+                  week: 5,
+                  value: 0.1
+                },
+                {
+                  week: 6,
+                  value: 0.06
+                },
+                {
+                  week: 7,
+                  value: 0.03
+                },
+                {
+                  week: 8,
+                  value: 0.20
+                },
+                {
+                  week: 9,
+                  value: 0.10
+                },
+                {
+                  week: 10,
+                  value: 0.06
+                },
+                {
+                  week: 11,
+                  value: 0.03
+                },
+                {
+                  week: 12,
+                  value: 0.34
+                },
+                {
+                  week: 13,
+                  value: 0.10
+                },
+                {
+                  week: 14,
+                  value: 0.06
+                },
+                {
+                  week: 15,
+                  value: 0.03
+                },
+                {
+                  week: 16,
+                  value: 0.20
+                },
+                {
+                  week: 17,
+                  value: 0.78
+                },
+                {
+                  week: 18,
+                  value: 0.06
+                },
+                {
+                  week: 19,
+                  value: 0.03
+                },
+                {
+                  week: 20,
+                  value: 0.11
                 }
               ]
             }]
@@ -53,8 +120,9 @@ var Dashboard = React.createClass({
             sentiment: 'negative',
             unitType: 'percentage',
             ratio: 0.23,
+            resolution: 'week',
             timeseries:[ {
-              resolution: 'weeks',
+              resolution: 'week',
               entries: [
                 {
                   week: 1,
@@ -75,7 +143,7 @@ var Dashboard = React.createClass({
               ]
             },
             {
-              resolution: 'weeks',
+              resolution: 'week',
               entries: [
                 {
                   week: 1,
@@ -105,8 +173,9 @@ var Dashboard = React.createClass({
             sentiment: 'negative',
             unitType: 'percentage',
             ratio: -0.3,
+            resolution: 'week',
             timeseries:[ {
-              resolution: 'weeks',
+              resolution: 'week',
               entries: [
                 {
                   week: 1,
@@ -136,8 +205,9 @@ var Dashboard = React.createClass({
             sentiment: 'positive',
             unitType: 'integer',
             ratio: 1542,
+            resolution: 'day',
             timeseries:[ {
-              resolution: 'days',
+              resolution: 'day',
               entries: [
                 {
                   day: 1,
@@ -191,9 +261,10 @@ var Dashboard = React.createClass({
             sentiment: 'negative',
             unitType: 'integer',
             ratio: -12394,
+            resolution: 'day',
             timeseries:[
               {
-                resolution: 'days',
+                resolution: 'day',
                 average: 100,
                 mean: 100,
                 stdv: 100,
@@ -243,7 +314,7 @@ var Dashboard = React.createClass({
                 ]
               },
               {
-                resolution: 'days',
+                resolution: 'day',
                 average: 100,
                 mean: 100,
                 stdv: 100,
@@ -313,13 +384,14 @@ var Dashboard = React.createClass({
         comparisonReport = <ComparisonReport entry={entry} />
       }
 
-
+      var chartId = self.makeId();
+      var chart = <Chart chartId={chartId} data={entry.timeseries[0].entries} axis={entry.resolution} type='line' />;
 
 
       return self.transferPropsTo(
         <div>
           <ReportEntry entry={entry} />
-          {comperable ? comparisonReport : ''}
+          {comperable ? comparisonReport : chart}
         </div>
       )
     });
