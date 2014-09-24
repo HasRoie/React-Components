@@ -15,9 +15,9 @@ var MultiSelectBox = require('components/MultiSelect');
 var EditableSelect = require('components/EditableSelect');
 var RuleEditor = require('components/RuleEditor');
 var ClicksTable = require('composits/ClicksTable');
-var Grid = require('components/Grid');
+var FlexGrid = require('components/FlexGrid');
 
-var BSGrid = require('react-bootstrap/Grid');
+var BSFlexGrid = require('react-bootstrap/FlexGrid');
 var PageHeader = require('react-bootstrap/PageHeader');
 var Row = require('react-bootstrap/Row');
 var Col = require('react-bootstrap/Col');
@@ -50,7 +50,7 @@ var ReactC3App = React.createClass({
           type: 'bar',
           groups: ['data1', 'data2']
         },
-        grid: {
+        FlexGrid: {
             y: {
                 lines: [{value:0}]
             }
@@ -122,19 +122,19 @@ var ReactC3App = React.createClass({
 
     return (
 
-      <BSGrid>
+      <BSFlexGrid>
         <PageHeader>
           Reporting POC Demo
         </PageHeader>
 
-        <Grid layout={layoutOptions} direction="row">
+        <FlexGrid layout={layoutOptions} direction="row">
             <ClicksTabel />
-        </Grid>
+        </FlexGrid>
 
         <Chart chartId="mychart" columns={this.state.data.columns} type={this.state.data.type} groups={this.state.data.groups} />
 
 
-      </BSGrid>
+      </BSFlexGrid>
 
     );
   }

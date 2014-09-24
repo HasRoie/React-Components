@@ -6,7 +6,7 @@
 
 var React = require('react/addons');
 var Chart = require('components/Chart');
-var Grid = require('components/Grid');
+var FlexGrid = require('components/FlexGrid');
 var Select = require('components/Select');
 
 require('styles/ChartWithControls.css');

@@ -6,7 +6,7 @@
 
 var React = require('react/addons');
 var Table = require('react-bootstrap/Table');
-var Grid = require('components/Grid.jsx');
+var FlexGrid = require('components/FlexGrid.jsx');
 var Row = require('react-bootstrap/Row');
 var Col = require('react-bootstrap/Col');
 var Input = require('react-bootstrap/Input');
@@ -59,7 +59,7 @@ var RuleEditor = React.createClass({
         <ModelTable model={this.state.model}></ModelTable>
 
         <NewEntry model={this.state.model} save={this.saveEntry}></NewEntry>
-        
+
 
       </div>
       );

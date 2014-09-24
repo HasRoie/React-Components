@@ -14,8 +14,8 @@
 }
 
 .c3-legend-item-tile,
-.c3-xgrid-focus,
-.c3-ygrid,
+.c3-xFlexGrid-focus,
+.c3-yFlexGrid,
 .c3-event-rect,
 .c3-bars path {
   shape-rendering: crispEdges;
@@ -47,18 +47,18 @@
 .c3-axis-y2-label {
 }
 
-/*-- Grid --*/
+/*-- FlexGrid --*/
 
-.c3-grid line {
+.c3-FlexGrid line {
   stroke: #aaa;
 }
-.c3-grid text {
+.c3-FlexGrid text {
   fill: #aaa;
 }
-.c3-xgrid, .c3-ygrid {
+.c3-xFlexGrid, .c3-yFlexGrid {
   stroke-dasharray: 3 3;
 }
-.c3-xgrid-focus {
+.c3-xFlexGrid-focus {
 }
 
 /*-- Text on Chart --*/

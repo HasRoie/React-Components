@@ -67,7 +67,7 @@ var Chart = React.createClass({
         type: this.props.type,
         x: this.props.axis
       },
-      grid: this.props.grid,
+      FlexGrid: this.props.FlexGrid,
     });
 
 

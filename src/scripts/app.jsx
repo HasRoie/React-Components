@@ -15,11 +15,11 @@ var ClicksTable = require('composits/ClicksTable');
 var Dashboard = require('composits/Dashboard');
 
 
-var BSGrid = require('react-bootstrap/Grid');
+var BsGrid = require('react-bootstrap/Grid');
 var PageHeader = require('react-bootstrap/PageHeader');
 var DeploydMixin = require('mixins/DeploydMixin');
 
-var Grid = require('components/Grid');
+var FlexGrid = require('components/FlexGrid');
 
 var Row = require('react-bootstrap/Row');
 var Col = require('react-bootstrap/Col');
@@ -65,16 +65,16 @@ var App = React.createClass({
 
     return (
 
-      <BSGrid>
+      <BsGrid>
         <PageHeader>
           Reporting POC Demo
         </PageHeader>
 
-        <Grid layout={layoutOptions} direction="row">
+        <FlexGrid layout={layoutOptions} direction="row">
             <Dashboard />
-        </Grid>
+        </FlexGrid>
 
-      </BSGrid>
+      </BsGrid>
 
     );
   }

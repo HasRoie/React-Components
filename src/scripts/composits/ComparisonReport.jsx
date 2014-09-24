@@ -7,7 +7,7 @@
 var React = require('react/addons');
 require('../../styles/ComparisonReport.css');
 
-var Grid = require('components/Grid');
+var FlexGrid = require('components/FlexGrid');
 var Chart = require('components/Chart');
 var UniqueIdMixin = require('mixins/UniqueIdMixin');
 
@@ -39,9 +39,9 @@ var ComparisonReport = React.createClass({
     });
 
     return (
-        <Grid layout={layoutOptions}>
+        <FlexGrid layout={layoutOptions}>
             {reports}
-        </Grid>
+        </FlexGrid>
       );
   }
 });

@@ -25,91 +25,180 @@ var Dashboard = React.createClass({
             unitType: 'percentage',
             ratio: 0.14,
             resolution: 'week',
-            timeseries:[ {
-              resolution: 'week',
-              entries: [
-                {
-                  week: 1,
-                  value: 0.130
-                },
-                {
-                  week: 2,
-                  value: 0.06
-                },
-                {
-                  week: 3,
-                  value: 0.03
-                },
-                {
-                  week: 4,
-                  value: 0.20
-                },
-                {
-                  week: 5,
-                  value: 0.1
-                },
-                {
-                  week: 6,
-                  value: 0.06
-                },
-                {
-                  week: 7,
-                  value: 0.03
-                },
-                {
-                  week: 8,
-                  value: 0.20
-                },
-                {
-                  week: 9,
-                  value: 0.10
-                },
-                {
-                  week: 10,
-                  value: 0.06
-                },
-                {
-                  week: 11,
-                  value: 0.03
-                },
-                {
-                  week: 12,
-                  value: 0.34
-                },
-                {
-                  week: 13,
-                  value: 0.10
-                },
-                {
-                  week: 14,
-                  value: 0.06
-                },
-                {
-                  week: 15,
-                  value: 0.03
-                },
-                {
-                  week: 16,
-                  value: 0.20
-                },
-                {
-                  week: 17,
-                  value: 0.78
-                },
-                {
-                  week: 18,
-                  value: 0.06
-                },
-                {
-                  week: 19,
-                  value: 0.03
-                },
-                {
-                  week: 20,
-                  value: 0.11
-                }
-              ]
-            }]
+            timeseries:[
+
+              {
+                resolution: 'week',
+                entries: [
+                  {
+                    week: 1,
+                    value: 0.130
+                  },
+                  {
+                    week: 2,
+                    value: 0.06
+                  },
+                  {
+                    week: 3,
+                    value: 0.03
+                  },
+                  {
+                    week: 4,
+                    value: 0.20
+                  },
+                  {
+                    week: 5,
+                    value: 0.1
+                  },
+                  {
+                    week: 6,
+                    value: 0.06
+                  },
+                  {
+                    week: 7,
+                    value: 0.03
+                  },
+                  {
+                    week: 8,
+                    value: 0.20
+                  },
+                  {
+                    week: 9,
+                    value: 0.10
+                  },
+                  {
+                    week: 10,
+                    value: 0.06
+                  },
+                  {
+                    week: 11,
+                    value: 0.03
+                  },
+                  {
+                    week: 12,
+                    value: 0.34
+                  },
+                  {
+                    week: 13,
+                    value: 0.10
+                  },
+                  {
+                    week: 14,
+                    value: 0.06
+                  },
+                  {
+                    week: 15,
+                    value: 0.03
+                  },
+                  {
+                    week: 16,
+                    value: 0.20
+                  },
+                  {
+                    week: 17,
+                    value: 0.78
+                  },
+                  {
+                    week: 18,
+                    value: 0.06
+                  },
+                  {
+                    week: 19,
+                    value: 0.03
+                  },
+                  {
+                    week: 20,
+                    value: 0.11
+                  }
+                ]
+              },
+              {
+                resolution: 'week',
+                entries: [
+                  {
+                    week: 1,
+                    value: 0.130
+                  },
+                  {
+                    week: 2,
+                    value: 0.36
+                  },
+                  {
+                    week: 3,
+                    value: 0.43
+                  },
+                  {
+                    week: 4,
+                    value: 0.50
+                  },
+                  {
+                    week: 5,
+                    value: 0.41
+                  },
+                  {
+                    week: 6,
+                    value: 0.26
+                  },
+                  {
+                    week: 7,
+                    value: 0.33
+                  },
+                  {
+                    week: 8,
+                    value: 0.25
+                  },
+                  {
+                    week: 9,
+                    value: 0.21
+                  },
+                  {
+                    week: 10,
+                    value: 0.66
+                  },
+                  {
+                    week: 11,
+                    value: 0.53
+                  },
+                  {
+                    week: 12,
+                    value: 0.24
+                  },
+                  {
+                    week: 13,
+                    value: 0.32
+                  },
+                  {
+                    week: 14,
+                    value: 0.05
+                  },
+                  {
+                    week: 15,
+                    value: 0.28
+                  },
+                  {
+                    week: 16,
+                    value: 0.34
+                  },
+                  {
+                    week: 17,
+                    value: 0.86
+                  },
+                  {
+                    week: 18,
+                    value: 0.76
+                  },
+                  {
+                    week: 19,
+                    value: 0.33
+                  },
+                  {
+                    week: 20,
+                    value: 0.51
+                  }
+                ]
+              }
+            ],
+
           },
           {
             id:2,

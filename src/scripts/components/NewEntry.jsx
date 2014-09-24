@@ -8,7 +8,7 @@ var i = 0;
 
 var React = require('react/addons');
 require('styles/NewEntry.css');
-var Grid = require('components/Grid');
+var FlexGrid = require('components/FlexGrid');
 var MultiInput = require('components/MultiInput');
 var Input = require('react-bootstrap/Input');
 var Button = require('react-bootstrap/Button');
@@ -98,15 +98,15 @@ var NewEntry = React.createClass({
       return (
         <div className="inputWrapper">
             <Input id={i} label={key} ref={key} type="text" defaultValue={that.state[field]}  onChange={that.updateChange} />
-            
+
         </div>
       )
     });
     return (
       <div>
-        <Grid layout={layoutOptions} direction="row">
+        <FlexGrid layout={layoutOptions} direction="row">
           {fields}
-        </Grid>
+        </FlexGrid>
         <Button bs-style="primary" onClick={this.saveEntry}>Save</Button>
       </div>
       );

@@ -51,16 +51,16 @@ var CLASS = {
     text: 'c3-text',
     texts: 'c3-texts',
     gaugeValue: 'c3-gauge-value',
-    grid: 'c3-grid',
-    xgrid: 'c3-xgrid',
-    xgrids: 'c3-xgrids',
-    xgridLine: 'c3-xgrid-line',
-    xgridLines: 'c3-xgrid-lines',
-    xgridFocus: 'c3-xgrid-focus',
-    ygrid: 'c3-ygrid',
-    ygrids: 'c3-ygrids',
-    ygridLine: 'c3-ygrid-line',
-    ygridLines: 'c3-ygrid-lines',
+    FlexGrid: 'c3-FlexGrid',
+    xFlexGrid: 'c3-xFlexGrid',
+    xFlexGrids: 'c3-xFlexGrids',
+    xFlexGridLine: 'c3-xFlexGrid-line',
+    xFlexGridLines: 'c3-xFlexGrid-lines',
+    xFlexGridFocus: 'c3-xFlexGrid-focus',
+    yFlexGrid: 'c3-yFlexGrid',
+    yFlexGrids: 'c3-yFlexGrids',
+    yFlexGridLine: 'c3-yFlexGrid-line',
+    yFlexGridLines: 'c3-yFlexGrid-lines',
     axis: 'c3-axis',
     axisX: 'c3-axis-x',
     axisXLabel: 'c3-axis-x-label',
@@ -236,16 +236,16 @@ c3.generate = function (config) {
         __axis_y2_padding = getConfig(['axis', 'y2', 'padding']),
         __axis_y2_ticks = getConfig(['axis', 'y2', 'ticks'], 10);
 
-    // grid
-    var __grid_x_show = getConfig(['grid', 'x', 'show'], false),
-        __grid_x_type = getConfig(['grid', 'x', 'type'], 'tick'),
-        __grid_x_lines = getConfig(['grid', 'x', 'lines'], []),
-        __grid_y_show = getConfig(['grid', 'y', 'show'], false),
+    // FlexGrid
+    var __FlexGrid_x_show = getConfig(['FlexGrid', 'x', 'show'], false),
+        __FlexGrid_x_type = getConfig(['FlexGrid', 'x', 'type'], 'tick'),
+        __FlexGrid_x_lines = getConfig(['FlexGrid', 'x', 'lines'], []),
+        __FlexGrid_y_show = getConfig(['FlexGrid', 'y', 'show'], false),
         // not used
-        // __grid_y_type = getConfig(['grid', 'y', 'type'], 'tick'),
-        __grid_y_lines = getConfig(['grid', 'y', 'lines'], []),
-        __grid_y_ticks = getConfig(['grid', 'y', 'ticks'], 10),
-        __grid_focus_show = getConfig(['grid', 'focus', 'show'], true);
+        // __FlexGrid_y_type = getConfig(['FlexGrid', 'y', 'type'], 'tick'),
+        __FlexGrid_y_lines = getConfig(['FlexGrid', 'y', 'lines'], []),
+        __FlexGrid_y_ticks = getConfig(['FlexGrid', 'y', 'ticks'], 10),
+        __FlexGrid_focus_show = getConfig(['FlexGrid', 'focus', 'show'], true);
 
     // point - point of each data
     var __point_show = getConfig(['point', 'show'], true),
@@ -525,8 +525,8 @@ c3.generate = function (config) {
             margin3.left = arcWidth / 2 + radiusExpanded * 1.1;
         }
     }
-    function updateXgridFocus() {
-        main.select('line.' + CLASS.xgridFocus)
+    function updateXFlexGridFocus() {
+        main.select('line.' + CLASS.xFlexGridFocus)
             .attr("x1", __axis_rotated ? 0 : -10)
             .attr("x2", __axis_rotated ? width : -10)
             .attr("y1", __axis_rotated ? -10 : 0)
@@ -2073,39 +2073,39 @@ c3.generate = function (config) {
         tooltip.style("display", "none");
     }
 
-    function showXGridFocus(selectedData) {
+    function showXFlexGridFocus(selectedData) {
         var dataToShow = selectedData.filter(function (d) { return d && isValue(d.value); });
         if (! __tooltip_show) { return; }
         // Hide when scatter plot exists
         if (hasScatterType(c3.data.targets) || hasArcType(c3.data.targets)) { return; }
-        var focusEl = main.selectAll('line.' + CLASS.xgridFocus);
+        var focusEl = main.selectAll('line.' + CLASS.xFlexGridFocus);
         focusEl
             .style("visibility", "visible")
             .data([dataToShow[0]])
             .attr(__axis_rotated ? 'y1' : 'x1', xx)
             .attr(__axis_rotated ? 'y2' : 'x2', xx);
-        smoothLines(focusEl, 'grid');
+        smoothLines(focusEl, 'FlexGrid');
     }
-    function hideXGridFocus() {
-        main.select('line.' + CLASS.xgridFocus).style("visibility", "hidden");
+    function hideXFlexGridFocus() {
+        main.select('line.' + CLASS.xFlexGridFocus).style("visibility", "hidden");
     }
-    function generateGridData(type, scale) {
-        var gridData = [], xDomain, firstYear, lastYear, i,
+    function generateFlexGridData(type, scale) {
+        var FlexGridData = [], xDomain, firstYear, lastYear, i,
             tickNum = main.select("." + CLASS.axisX).selectAll('.tick').size();
         if (type === 'year') {
             xDomain = getXDomain();
             firstYear = xDomain[0].getFullYear();
             lastYear = xDomain[1].getFullYear();
             for (i = firstYear; i <= lastYear; i++) {
-                gridData.push(new Date(i + '-01-01 00:00:00'));
+                FlexGridData.push(new Date(i + '-01-01 00:00:00'));
             }
         } else {
-            gridData = scale.ticks(10);
-            if (gridData.length > tickNum) { // use only int
-                gridData = gridData.filter(function (d) { return ("" + d).indexOf('.') < 0; });
+            FlexGridData = scale.ticks(10);
+            if (FlexGridData.length > tickNum) { // use only int
+                FlexGridData = FlexGridData.filter(function (d) { return ("" + d).indexOf('.') < 0; });
             }
         }
-        return gridData;
+        return FlexGridData;
     }
 
     //-- Shape --//
@@ -2873,7 +2873,7 @@ c3.generate = function (config) {
     }
 
     function init(data) {
-        var arcs, eventRect, grid, i, binding = true;
+        var arcs, eventRect, FlexGrid, i, binding = true;
 
         selectChart = d3.select(__bindto);
         if (selectChart.empty()) {
@@ -2975,23 +2975,23 @@ c3.generate = function (config) {
             .attr("clip-path", clipPath)
             .attr("class", CLASS.regions);
 
-        // Grids
-        grid = main.append('g')
+        // FlexGrids
+        FlexGrid = main.append('g')
             .attr("clip-path", clipPath)
-            .attr('class', CLASS.grid);
-        if (__grid_x_show) {
-            grid.append("g").attr("class", CLASS.xgrids);
+            .attr('class', CLASS.FlexGrid);
+        if (__FlexGrid_x_show) {
+            FlexGrid.append("g").attr("class", CLASS.xFlexGrids);
         }
-        if (__grid_y_show) {
-            grid.append('g').attr('class', CLASS.ygrids);
+        if (__FlexGrid_y_show) {
+            FlexGrid.append('g').attr('class', CLASS.yFlexGrids);
         }
-        grid.append('g').attr("class", CLASS.xgridLines);
-        grid.append('g').attr('class', CLASS.ygridLines);
-        if (__grid_focus_show) {
-            grid.append('g')
-                .attr("class", CLASS.xgridFocus)
+        FlexGrid.append('g').attr("class", CLASS.xFlexGridLines);
+        FlexGrid.append('g').attr('class', CLASS.yFlexGridLines);
+        if (__FlexGrid_focus_show) {
+            FlexGrid.append('g')
+                .attr("class", CLASS.xFlexGridFocus)
               .append('line')
-                .attr('class', CLASS.xgridFocus);
+                .attr('class', CLASS.xFlexGridFocus);
         }
 
         // Define g for chart area
@@ -3220,7 +3220,7 @@ c3.generate = function (config) {
             .on('mouseout', function (d) {
                 var index = d.index;
                 if (hasArcType(c3.data.targets)) { return; }
-                hideXGridFocus();
+                hideXFlexGridFocus();
                 hideTooltip();
                 // Undo expanded shapes
                 unexpandCircles(index);
@@ -3247,7 +3247,7 @@ c3.generate = function (config) {
 
                 if (__tooltip_grouped) {
                     showTooltip(selectedData, d3.mouse(this));
-                    showXGridFocus(selectedData);
+                    showXFlexGridFocus(selectedData);
                 }
 
                 if (__tooltip_grouped && (!__data_selection_enabled || __data_selection_grouped)) {
@@ -3261,7 +3261,7 @@ c3.generate = function (config) {
                             eventRect.style('cursor', __data_selection_grouped ? 'pointer' : null);
                         }
                         if (!__tooltip_grouped) {
-                            hideXGridFocus();
+                            hideXFlexGridFocus();
                             hideTooltip();
                             if (!__data_selection_grouped) {
                                 unexpandCircles(index);
@@ -3283,7 +3283,7 @@ c3.generate = function (config) {
                         }
                         if (!__tooltip_grouped) {
                             showTooltip([d], d3.mouse(this));
-                            showXGridFocus([d]);
+                            showXFlexGridFocus([d]);
                             if (__point_focus_expand_enabled) { expandCircles(index, d.id); }
                             expandBars(index, d.id);
                         }
@@ -3316,7 +3316,7 @@ c3.generate = function (config) {
             .attr('class', CLASS.eventRect)
             .on('mouseout', function () {
                 if (hasArcType(c3.data.targets)) { return; }
-                hideXGridFocus();
+                hideXFlexGridFocus();
                 hideTooltip();
                 unexpandCircles();
             })
@@ -3350,8 +3350,8 @@ c3.generate = function (config) {
                     expandCircles(closest.index, closest.id);
                 }
 
-                // Show xgrid focus line
-                showXGridFocus(selectedData);
+                // Show xFlexGrid focus line
+                showXFlexGridFocus(selectedData);
 
                 // Show cursor as pointer if point is close to mouse position
                 if (dist(closest, mouse) < 100) {
@@ -3505,7 +3505,7 @@ c3.generate = function (config) {
     }
 
     function smoothLines(el, type) {
-        if (type === 'grid') {
+        if (type === 'FlexGrid') {
             el.each(function () {
                 var g = d3.select(this),
                     x1 = g.attr('x1'),
@@ -3523,7 +3523,7 @@ c3.generate = function (config) {
     }
 
     function redraw(options, transitions) {
-        var xgrid, xgridAttr, xgridData, xgridLines, xgridLine, ygrid, ygridLines, ygridLine, flushXGrid;
+        var xFlexGrid, xFlexGridAttr, xFlexGridData, xFlexGridLines, xFlexGridLine, yFlexGrid, yFlexGridLines, yFlexGridLine, flushXFlexGrid;
         var mainLine, mainArea, mainCircle, mainBar, mainArc, mainRegion, mainText, contextLine,  contextArea, contextBar, eventRect, eventRectUpdate;
         var areaIndices = getShapeIndices(isAreaType), barIndices = getShapeIndices(isBarType), lineIndices = getShapeIndices(isLineType), maxDataCountTarget, tickOffset;
         var rectX, rectW;
@@ -3533,7 +3533,7 @@ c3.generate = function (config) {
         var duration, durationForExit, durationForAxis, waitForDraw;
         var targetsToShow = filterTargetsToShow(c3.data.targets), tickValues, i, intervalForCulling;
 
-        xgrid = xgridLines = mainCircle = mainText = getEmptySelection();
+        xFlexGrid = xFlexGridLines = mainCircle = mainText = getEmptySelection();
 
         options = options || {};
         withY = getOption(options, "withY", true);
@@ -3557,7 +3557,7 @@ c3.generate = function (config) {
             updateLegend(mapToIds(c3.data.targets), options, transitions);
         }
 
-        // MEMO: needed for grids calculation
+        // MEMO: needed for FlexGrids calculation
         if (isCategorized && targetsToShow.length === 0) {
             x.domain([0, axes.x.selectAll('.tick').size()]);
         }
@@ -3630,8 +3630,8 @@ c3.generate = function (config) {
         // tooltip
         tooltip.style("display", "none");
 
-        // xgrid focus
-        updateXgridFocus();
+        // xFlexGrid focus
+        updateXFlexGridFocus();
 
         // Data empty label positioning and text.
         main.select("text." + CLASS.text + '.' + CLASS.empty)
@@ -3641,10 +3641,10 @@ c3.generate = function (config) {
           .transition()
             .style('opacity', targetsToShow.length ? 0 : 1);
 
-        // grid
-        main.select('line.' + CLASS.xgridFocus).style("visibility", "hidden");
-        if (__grid_x_show) {
-            xgridAttr = __axis_rotated ? {
+        // FlexGrid
+        main.select('line.' + CLASS.xFlexGridFocus).style("visibility", "hidden");
+        if (__FlexGrid_x_show) {
+            xFlexGridAttr = __axis_rotated ? {
                 'x1': 0,
                 'x2': width,
                 'y1': function (d) { return x(d) - tickOffset; },
@@ -3656,28 +3656,28 @@ c3.generate = function (config) {
                 'y2': height
             };
             // this is used to flow
-            flushXGrid = function (withoutUpdate) {
-                xgridData = generateGridData(__grid_x_type, x);
+            flushXFlexGrid = function (withoutUpdate) {
+                xFlexGridData = generateFlexGridData(__FlexGrid_x_type, x);
                 tickOffset = isCategorized ? xAxis.tickOffset() : 0;
-                xgrid = main.select('.' + CLASS.xgrids).selectAll('.' + CLASS.xgrid)
-                    .data(xgridData);
-                xgrid.enter().append('line').attr("class", CLASS.xgrid);
+                xFlexGrid = main.select('.' + CLASS.xFlexGrids).selectAll('.' + CLASS.xFlexGrid)
+                    .data(xFlexGridData);
+                xFlexGrid.enter().append('line').attr("class", CLASS.xFlexGrid);
                 if (!withoutUpdate) {
-                    xgrid.attr(xgridAttr)
+                    xFlexGrid.attr(xFlexGridAttr)
                         .style("opacity", function () { return +d3.select(this).attr(__axis_rotated ? 'y1' : 'x1') === (__axis_rotated ? height : 0) ? 0 : 1; });
                 }
-                xgrid.exit().remove();
+                xFlexGrid.exit().remove();
             };
-            flushXGrid();
+            flushXFlexGrid();
         }
-        xgridLines = main.select('.' + CLASS.xgridLines).selectAll('.' + CLASS.xgridLine)
-            .data(__grid_x_lines);
+        xFlexGridLines = main.select('.' + CLASS.xFlexGridLines).selectAll('.' + CLASS.xFlexGridLine)
+            .data(__FlexGrid_x_lines);
         // enter
-        xgridLine = xgridLines.enter().append('g')
-            .attr("class", function (d) { return CLASS.xgridLine + (d.class ? ' ' + d.class : ''); });
-        xgridLine.append('line')
+        xFlexGridLine = xFlexGridLines.enter().append('g')
+            .attr("class", function (d) { return CLASS.xFlexGridLine + (d.class ? ' ' + d.class : ''); });
+        xFlexGridLine.append('line')
             .style("opacity", 0);
-        xgridLine.append('text')
+        xFlexGridLine.append('text')
             .attr("text-anchor", "end")
             .attr("transform", __axis_rotated ? "" : "rotate(-90)")
             .attr('dx', __axis_rotated ? 0 : -margin.top)
@@ -3686,52 +3686,52 @@ c3.generate = function (config) {
         // udpate
         // done in d3.transition() of the end of this function
         // exit
-        xgridLines.exit().transition().duration(duration)
+        xFlexGridLines.exit().transition().duration(duration)
             .style("opacity", 0)
             .remove();
-        // Y-Grid
-        if (withY && __grid_y_show) {
-            ygrid = main.select('.' + CLASS.ygrids).selectAll('.' + CLASS.ygrid)
-                .data(y.ticks(__grid_y_ticks));
-            ygrid.enter().append('line')
-                .attr('class', CLASS.ygrid);
-            ygrid.attr("x1", __axis_rotated ? y : 0)
+        // Y-FlexGrid
+        if (withY && __FlexGrid_y_show) {
+            yFlexGrid = main.select('.' + CLASS.yFlexGrids).selectAll('.' + CLASS.yFlexGrid)
+                .data(y.ticks(__FlexGrid_y_ticks));
+            yFlexGrid.enter().append('line')
+                .attr('class', CLASS.yFlexGrid);
+            yFlexGrid.attr("x1", __axis_rotated ? y : 0)
                 .attr("x2", __axis_rotated ? y : width)
                 .attr("y1", __axis_rotated ? 0 : y)
                 .attr("y2", __axis_rotated ? height : y);
-            ygrid.exit().remove();
-            smoothLines(ygrid, 'grid');
+            yFlexGrid.exit().remove();
+            smoothLines(yFlexGrid, 'FlexGrid');
         }
         if (withY) {
-            ygridLines = main.select('.' + CLASS.ygridLines).selectAll('.' + CLASS.ygridLine)
-                .data(__grid_y_lines);
+            yFlexGridLines = main.select('.' + CLASS.yFlexGridLines).selectAll('.' + CLASS.yFlexGridLine)
+                .data(__FlexGrid_y_lines);
             // enter
-            ygridLine = ygridLines.enter().append('g')
-                .attr("class", function (d) { return CLASS.ygridLine + (d.class ? ' ' + d.class : ''); });
-            ygridLine.append('line')
+            yFlexGridLine = yFlexGridLines.enter().append('g')
+                .attr("class", function (d) { return CLASS.yFlexGridLine + (d.class ? ' ' + d.class : ''); });
+            yFlexGridLine.append('line')
                 .style("opacity", 0);
-            ygridLine.append('text')
+            yFlexGridLine.append('text')
                 .attr("text-anchor", "end")
                 .attr("transform", __axis_rotated ? "rotate(-90)" : "")
                 .attr('dx', __axis_rotated ? 0 : -margin.top)
                 .attr('dy', -5)
                 .style("opacity", 0);
             // update
-            ygridLines.select('line')
+            yFlexGridLines.select('line')
               .transition().duration(duration)
                 .attr("x1", __axis_rotated ? yv : 0)
                 .attr("x2", __axis_rotated ? yv : width)
                 .attr("y1", __axis_rotated ? 0 : yv)
                 .attr("y2", __axis_rotated ? height : yv)
                 .style("opacity", 1);
-            ygridLines.select('text')
+            yFlexGridLines.select('text')
               .transition().duration(duration)
                 .attr("x", __axis_rotated ? 0 : width)
                 .attr("y", yv)
                 .text(function (d) { return d.text; })
                 .style("opacity", 1);
             // exit
-            ygridLines.exit().transition().duration(duration)
+            yFlexGridLines.exit().transition().duration(duration)
                 .style("opacity", 0)
                 .remove();
         }
@@ -4078,13 +4078,13 @@ c3.generate = function (config) {
                 .attr("width", regionWidth)
                 .attr("height", regionHeight)
                 .style("fill-opacity", function (d) { return isValue(d.opacity) ? d.opacity : 0.1; }));
-            transitions.push(xgridLines.select('line').transition()
+            transitions.push(xFlexGridLines.select('line').transition()
                 .attr("x1", __axis_rotated ? 0 : xv)
                 .attr("x2", __axis_rotated ? width : xv)
                 .attr("y1", __axis_rotated ? xv : margin.top)
                 .attr("y2", __axis_rotated ? xv : height)
                 .style("opacity", 1));
-            transitions.push(xgridLines.select('text').transition()
+            transitions.push(xFlexGridLines.select('text').transition()
                 .attr("x", __axis_rotated ? width : 0)
                 .attr("y", xv)
                 .text(function (d) { return d.text; })
@@ -4116,7 +4116,7 @@ c3.generate = function (config) {
             // update x domain to generate axis elements for flow
             domain = updateXDomain(targetsToShow, true, true);
             // update elements related to x scale
-            if (flushXGrid) { flushXGrid(true); }
+            if (flushXFlexGrid) { flushXFlexGrid(true); }
 
             // generate transform to flow
             if (!options.flow.orgDataCount) { // if empty
@@ -4151,8 +4151,8 @@ c3.generate = function (config) {
                 wait.add(mainCircle.transition().attr('transform', transform));
                 wait.add(mainText.transition().attr('transform', transform));
                 wait.add(mainRegion.filter(isRegionOnX).transition().attr('transform', transform));
-                wait.add(xgrid.transition().attr('transform', transform));
-                wait.add(xgridLines.transition().attr('transform', transform));
+                wait.add(xFlexGrid.transition().attr('transform', transform));
+                wait.add(xFlexGridLines.transition().attr('transform', transform));
             })
             .call(wait, function () {
                 var i, shapes = [], texts = [], eventRects = [];
@@ -4167,19 +4167,19 @@ c3.generate = function (config) {
                     svg.selectAll('.' + CLASS.shapes).selectAll(shapes).remove();
                     svg.selectAll('.' + CLASS.texts).selectAll(texts).remove();
                     svg.selectAll('.' + CLASS.eventRects).selectAll(eventRects).remove();
-                    svg.select('.' + CLASS.xgrid).remove();
+                    svg.select('.' + CLASS.xFlexGrid).remove();
                 }
 
                 // draw again for removing flowed elements and reverting attr
-                xgrid
+                xFlexGrid
                     .attr('transform', null)
-                    .attr(xgridAttr);
-                xgridLines
+                    .attr(xFlexGridAttr);
+                xFlexGridLines
                     .attr('transform', null);
-                xgridLines.select('line')
+                xFlexGridLines.select('line')
                     .attr("x1", __axis_rotated ? 0 : xv)
                     .attr("x2", __axis_rotated ? width : xv);
-                xgridLines.select('text')
+                xFlexGridLines.select('text')
                     .attr("x", __axis_rotated ? width : 0)
                     .attr("y", xv);
                 mainBar
@@ -4773,7 +4773,7 @@ c3.generate = function (config) {
     function isArc(d) {
         return 'data' in d && hasTarget(c3.data.targets, d.data.id);
     }
-    function getGridFilterToRemove(params) {
+    function getFlexGridFilterToRemove(params) {
         return params ? function (line) {
             var found = false;
             [].concat(params).forEach(function (param) {
@@ -4784,18 +4784,18 @@ c3.generate = function (config) {
             return found;
         } : function () { return true; };
     }
-    function removeGridLines(params, forX) {
-        var toRemove = getGridFilterToRemove(params),
+    function removeFlexGridLines(params, forX) {
+        var toRemove = getFlexGridFilterToRemove(params),
             toShow = function (line) { return !toRemove(line); },
-            classLines = forX ? CLASS.xgridLines : CLASS.ygridLines,
-            classLine = forX ? CLASS.xgridLine : CLASS.ygridLine;
+            classLines = forX ? CLASS.xFlexGridLines : CLASS.yFlexGridLines,
+            classLine = forX ? CLASS.xFlexGridLine : CLASS.yFlexGridLine;
         main.select('.' + classLines).selectAll('.' + classLine).filter(toRemove)
           .transition().duration(__transition_duration)
             .style('opacity', 0).remove();
         if (forX) {
-            __grid_x_lines = __grid_x_lines.filter(toShow);
+            __FlexGrid_x_lines = __FlexGrid_x_lines.filter(toShow);
         } else {
-            __grid_y_lines = __grid_y_lines.filter(toShow);
+            __FlexGrid_y_lines = __FlexGrid_y_lines.filter(toShow);
         }
     }
     function transformTo(targetIds, type, optionsForRedraw) {
@@ -5145,32 +5145,32 @@ c3.generate = function (config) {
         return __data_groups;
     };
 
-    c3.xgrids = function (grids) {
-        if (! grids) { return __grid_x_lines; }
-        __grid_x_lines = grids;
+    c3.xFlexGrids = function (FlexGrids) {
+        if (! FlexGrids) { return __FlexGrid_x_lines; }
+        __FlexGrid_x_lines = FlexGrids;
         redraw();
-        return __grid_x_lines;
+        return __FlexGrid_x_lines;
     };
-    c3.xgrids.add = function (grids) {
-        if (! grids) { return; }
-        return c3.xgrids(__grid_x_lines.concat(grids));
+    c3.xFlexGrids.add = function (FlexGrids) {
+        if (! FlexGrids) { return; }
+        return c3.xFlexGrids(__FlexGrid_x_lines.concat(FlexGrids));
     };
-    c3.xgrids.remove = function (params) { // TODO: multiple
-        removeGridLines(params, true);
+    c3.xFlexGrids.remove = function (params) { // TODO: multiple
+        removeFlexGridLines(params, true);
     };
 
-    c3.ygrids = function (grids) {
-        if (! grids) { return __grid_y_lines; }
-        __grid_y_lines = grids;
+    c3.yFlexGrids = function (FlexGrids) {
+        if (! FlexGrids) { return __FlexGrid_y_lines; }
+        __FlexGrid_y_lines = FlexGrids;
         redraw();
-        return __grid_y_lines;
+        return __FlexGrid_y_lines;
     };
-    c3.ygrids.add = function (grids) {
-        if (! grids) { return; }
-        return c3.ygrids(__grid_y_lines.concat(grids));
+    c3.yFlexGrids.add = function (FlexGrids) {
+        if (! FlexGrids) { return; }
+        return c3.yFlexGrids(__FlexGrid_y_lines.concat(FlexGrids));
     };
-    c3.ygrids.remove = function (params) { // TODO: multiple
-        removeGridLines(params, false);
+    c3.yFlexGrids.remove = function (params) { // TODO: multiple
+        removeFlexGridLines(params, false);
     };
 
     c3.regions = function (regions) {
@@ -5354,7 +5354,7 @@ c3.generate = function (config) {
 
       if (__tooltip_grouped) {
           showTooltip(selectedData, mouse);
-          showXGridFocus(selectedData);
+          showXFlexGridFocus(selectedData);
       }
 
       if (__tooltip_grouped && (!__data_selection_enabled || __data_selection_grouped)) {
@@ -5369,7 +5369,7 @@ c3.generate = function (config) {
                   eventRect.style('cursor', __data_selection_grouped ? 'pointer' : null);
               }
               if (!__tooltip_grouped) {
-                  hideXGridFocus();
+                  hideXFlexGridFocus();
                   hideTooltip();
                   if (!__data_selection_grouped) {
                       unexpandCircles(index);
@@ -5391,7 +5391,7 @@ c3.generate = function (config) {
               }
               if (!__tooltip_grouped) {
                   showTooltip(selectedData,mouse);
-                  showXGridFocus([d]);
+                  showXFlexGridFocus([d]);
                   if (__point_focus_expand_enabled) { expandCircles(index, d.id); }
                   expandBars(index, d.id);
               }

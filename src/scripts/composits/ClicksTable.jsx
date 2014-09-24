@@ -6,7 +6,7 @@
 var React = require('react/addons');
 
 var ClicksSchema = require('schemas/clicks.schema.js');
-var Grid = require('components/Grid');
+var FlexGrid = require('components/FlexGrid');
 var NewEntry = require('components/NewEntry');
 
 var DeploydMixin = require('mixins/DeploydMixin');
@@ -82,7 +82,7 @@ var ClicksTable = React.createClass({
     var that = this;
 
     return (
-      <Grid layout={layoutOptions}>
+      <FlexGrid layout={layoutOptions}>
         <div className="ruleEditorWrapper" flex="8">
           <Panel header="Clicks">
             <ModelTable model={this.state.model}></ModelTable>
@@ -93,7 +93,7 @@ var ClicksTable = React.createClass({
         <div className="chartWrapper" flex="4">
           <ChartWithControls chartId="mychart" data={this.state.instances} initialType="bar" highlightedData={this.state.highlightedData} />
         </div>
-      </Grid>
+      </FlexGrid>
     );
   }
 });
