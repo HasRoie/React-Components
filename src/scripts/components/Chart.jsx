@@ -20,13 +20,12 @@
 
 
 var React = require('react/addons');
-var _ = require('lodash');
 
 /**
 * Mixins
 */
-var c3 = require('mixins/c3');
-var d3 = require('d3');
+// var c3 = require('mixins/c3');
+// var d3 = require('d3');
 var EventEmitterMixin = require('mixins/EventEmitter');
 
 /**

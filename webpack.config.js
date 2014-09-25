@@ -8,62 +8,63 @@
 'use strict';
 
 module.exports = {
-  output: {
-    filename: 'main.js'
-  },
+    output: {
+        filename: 'main.js'
+    },
 
-  cache: true,
-  debug: true,
-  devtool: false,
-  entry: './src/scripts/<%= pkg.mainInput %>.jsx',
+    cache: true,
+    debug: true,
+    devtool: false,
+    entry: './src/scripts/<%= pkg.mainInput %>.jsx',
 
-  stats: {
-    colors: true,
-    reasons: true
-  },
+    stats: {
+        colors: true,
+        reasons: true
+    },
 
-  module: {
-    preLoaders: [{
-      test: '\\.js$',
-      exclude: 'node_modules',
-      loader: 'jshint'
+    module: {
+        preLoaders: [{
+            test: '\\.js$',
+            exclude: 'node_modules',
+            loader: 'jshint'
     }],
 
-    loaders: [{
-      test: /\.css$/,
-      loader: 'style!css'
+        loaders: [{
+                test: /\.css$/,
+                loader: 'style!css'
     }, {
-      test: /\.gif/,
-      loader: 'url-loader?limit=10000&minetype=image/gif'
+                test: /\.gif/,
+                loader: 'url-loader?limit=10000&minetype=image/gif'
     }, {
-      test: /\.jpg/,
-      loader: 'url-loader?limit=10000&minetype=image/jpg'
+                test: /\.jpg/,
+                loader: 'url-loader?limit=10000&minetype=image/jpg'
     }, {
-      test: /\.png/,
-      loader: 'url-loader?limit=10000&minetype=image/png'
+                test: /\.png/,
+                loader: 'url-loader?limit=10000&minetype=image/png'
     },
-    {
-      test: /\.jsx$/, 
-      loaders: ['jsx-loader?harmony&insertPragma=React.DOM']
+            {
+                test: /\.jsx$/,
+                loaders: ['jsx-loader?harmony&insertPragma=React.DOM']
     },
-    {
-      test: /\.es6\.js$/, 
-      loader: 'es6-loader'
+            {
+                test: /\.es6\.js$/,
+                loader: 'es6-loader'
     }
     ]
-  },
+    },
 
-  resolve: {
-    extensions: ['', '.js', '.jsx', '.es6.js'],
+    resolve: {
+        extensions: ['', '.js', '.jsx', '.es6.js'],
 
-    alias : {
-      app : __dirname + '/src/scripts/app.js',
-      pages: __dirname + '/src/scripts/pages',
-      mixins: __dirname + '/src/scripts/mixins',
-      components : __dirname + '/src/scripts/components',
-      composits: __dirname + '/src/scripts/composits',
-      actions: __dirname + '/web/react/actions',
-      styles: __dirname + '/src/styles'
+        alias: {
+            app: __dirname + '/src/scripts/app.js',
+            pages: __dirname + '/src/scripts/pages',
+            mixins: __dirname + '/src/scripts/mixins',
+            components: __dirname + '/src/scripts/components',
+            composits: __dirname + '/src/scripts/composits',
+            actions: __dirname + '/src/scripts/actions',
+            schemas: __dirname + '/src/scripts/schemas',
+            styles: __dirname + '/src/styles'
+        }
     }
-  }
 };
