@@ -3,12 +3,12 @@
  */
 
  /*
-	<FlexTable 	
-		rows="<Array>" 
-		cols="<Array>" 
-		header="<Array>" 
-		hoverRow="<EventHandler>" 
-		hoverCol="<EventHandler>" 
+	<FlexTable
+		data="<Array>" 
+		cols="<Array>"
+		header="<Array>"
+		hoverRow="<EventHandler>"
+		hoverCol="<EventHandler>"
 		hoverCell="<EventHandler>"
 		clickRow="<EventHandler>"
 		clickCell="<EventHandler>"

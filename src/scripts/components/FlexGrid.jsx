@@ -43,7 +43,7 @@ var FlexGrid = React.createClass({
           {item}
         </div>
       );
-    }.bind(this));
+    }).bind(this);
 
     return(
       <div className="layout" style={layoutStyle} id={layoutId}>
