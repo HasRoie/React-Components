@@ -2,6 +2,20 @@
  * @jsx React.DOM
  */
 
+
+/*
+    var chartTypes = [
+      {value: 'bar', label: 'Bar'},
+      {value: 'line', label: 'Line'},
+      {value:'area', label:'Area'},
+      {value:'area-spline', label:'Area Spline'},
+      {value:'pie', label:'Pie'},
+      {value:'donut', label:'Donut'},
+      {value:'gauge', label:'Gauge'}
+    ];
+*/
+
+
 'use strict';
 
 

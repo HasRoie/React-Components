@@ -41,22 +41,28 @@ module.exports = {
     }, {
       test: /\.png/,
       loader: 'url-loader?limit=10000&minetype=image/png'
-    }, {
-      test: /\.jsx$/,
-      loader: 'jsx-loader'
-    }]
+    },
+    {
+      test: /\.jsx$/, 
+      loaders: ['jsx-loader?harmony&insertPragma=React.DOM']
+    },
+    {
+      test: /\.es6\.js$/, 
+      loader: 'es6-loader'
+    }
+    ]
   },
 
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['', '.js', '.jsx', '.es6.js'],
 
     alias : {
-      app : __dirname + '/src/script/app.js',
+      app : __dirname + '/src/scripts/app.js',
       pages: __dirname + '/src/scripts/pages',
       mixins: __dirname + '/src/scripts/mixins',
-      schemas: __dirname + '/src/scripts/schemas',
       components : __dirname + '/src/scripts/components',
       composits: __dirname + '/src/scripts/composits',
+      actions: __dirname + '/web/react/actions',
       styles: __dirname + '/src/styles'
     }
   }

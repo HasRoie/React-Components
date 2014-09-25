@@ -8,7 +8,8 @@
   "mainOutput": "main",
   "dependencies": {
     "react": "~0.10.0",
-    "react-bootstrap": "~0.11.1"
+    "react-bootstrap": "~0.11.1",
+    "es6-loader": "~0.2.0"
   },
   "devDependencies": {
     "grunt": "~0.4.4",

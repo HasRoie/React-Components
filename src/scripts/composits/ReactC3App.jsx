@@ -16,8 +16,8 @@ var EditableSelect = require('components/EditableSelect');
 var RuleEditor = require('components/RuleEditor');
 var ClicksTable = require('composits/ClicksTable');
 var FlexGrid = require('components/FlexGrid');
+var BootstrapGrid = require('react-bootstrap/FlexGrid');
 
-var BSFlexGrid = require('react-bootstrap/FlexGrid');
 var PageHeader = require('react-bootstrap/PageHeader');
 var Row = require('react-bootstrap/Row');
 var Col = require('react-bootstrap/Col');
@@ -77,65 +77,12 @@ var ReactC3App = React.createClass({
   },
   render: function() {
 
-    var chartTypes = [
-      {value: 'bar', label: 'Bar'},
-      {value: 'line', label: 'Line'},
-      {value:'area', label:'Area'},
-      {value:'area-spline', label:'Area Spline'},
-      {value:'pie', label:'Pie'},
-      {value:'donut', label:'Donut'},
-      {value:'gauge', label:'Gauge'}
-    ];
 
-    var mobileApps = [
-      {value: 'app1', label: 'Mobile app 1'},
-      {value: 'app2', label: 'Mobile app 2'},
-      {value: 'app3', label: 'Mobile app 3'},
-      {value: 'app4', label: 'Mobile app 4'},
-    ];
 
-    var partners = [
-      {value: 'partner1', label: 'Mobile partner 1'},
-      {value: 'partner2', label: 'Mobile partner 2'},
-      {value: 'partner3', label: 'Mobile partner 3'},
-      {value: 'partner4', label: 'Mobile partner 4'},
-    ];
-
-    var eventTypes = [
-      {value: 'event1', label: 'Event 1'},
-      {value: 'event2', label: 'Event 2'},
-      {value: 'event3', label: 'Event 3'},
-      {value: 'event4', label: 'Event 4'},
-    ];
-
-    var groupsArr = _.keys(this.state.data.columns[0]);
-
-    var groups = [];
-
-    var layoutOptions = {
-      flexWrap: 'wrap',
-      justify: 'flex-start',
-      alignItems: 'stretch',
-      alignContent: 'strech',
-      display: 'flex'
-    };
 
     return (
-
-      <BSFlexGrid>
-        <PageHeader>
-          Reporting POC Demo
-        </PageHeader>
-
-        <FlexGrid layout={layoutOptions} direction="row">
-            <ClicksTabel />
-        </FlexGrid>
-
-        <Chart chartId="mychart" columns={this.state.data.columns} type={this.state.data.type} groups={this.state.data.groups} />
-
-
-      </BSFlexGrid>
-
+      <div></div>
+   
     );
   }
 });
